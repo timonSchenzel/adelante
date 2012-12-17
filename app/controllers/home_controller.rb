@@ -15,4 +15,8 @@ class HomeController < ApplicationController
 
   end
 
+  def testfunctie
+
+  end
+
 end
