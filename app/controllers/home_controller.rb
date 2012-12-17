@@ -1,15 +1,14 @@
 class HomeController < ApplicationController
 
-  #before_filter :signed_in_user
+  before_filter :signed_in_user
 
   def index
-    @render_header = false
-    @render_footer = false;
+    @therapy = Therapy.new
+    #@game.rounds.build
   end
 
   def home
-    @render_header = false
-    @render_footer = false
+    @therapy = Therapy.new
   end
 
 end

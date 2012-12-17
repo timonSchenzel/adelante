@@ -1,0 +1,21 @@
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+  <ul class="nav nav-tabs">
+    <li><a href="home">Home</a></li>
+    <li><a href="agenda">Agenda</a></li>
+    <li><a href="client">Cliënten</a></li>
+    <li class="active"><a href="therapy">Therapieën</a></li>
+    <li><a href="colleague">Collega's</a></li>
+  </ul>
+
+  <div class="page-header well">
+      <ul class="nav nav-tabs nav-stacked">
+        <% @therapies.each do |therapy| %>
+            <li>
+              <a href="#">
+                <%= therapy.name %>
+              </a>
+            </li>
+        <% end %>
+      </ul>
+  </div>
+</div>

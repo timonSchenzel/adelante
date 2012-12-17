@@ -1,5 +1,3 @@
 class Note < ActiveRecord::Base
-  attr_accessible :name, :description, :client_id
-  belongs_to :client
-
+  attr_accessible :description, :name, :sessions_id
 end

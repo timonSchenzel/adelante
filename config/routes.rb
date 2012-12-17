@@ -3,7 +3,7 @@ Adelante::Application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
   resources :therapists
-  resources :therapy
+  resources :therapies
   resources :agenda
   resources :client
   resources :colleague
