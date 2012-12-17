@@ -1,3 +1,4 @@
 class DossierItem < ActiveRecord::Base
-  attr_accessible :description, :dossier_id, :name
+  # attr_accessible :title, :body
+  belongs_to :dossiers
 end

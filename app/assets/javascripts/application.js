@@ -12,4 +12,31 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap
 //= require_tree .
+
+jQuery (function ($)
+{   // ready
+    $(window).resize (function (event)
+    {
+        var minwidth = 1200;
+        var minheight = 1024;
+
+        var bodye = $('body');
+
+        var bodywidth = bodye.width ();
+
+        if (bodywidth < minwidth)
+        {   // maintain minimum size
+            bodye
+                .css ('backgroundSize', minwidth + 'px' + ' ' + minheight + 'px')
+            ;
+        }
+        else
+        {   // expand
+            bodye
+                .css ('backgroundSize', '100% auto')
+            ;
+        }
+    });
+});
