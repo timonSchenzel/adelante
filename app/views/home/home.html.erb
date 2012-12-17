@@ -11,7 +11,7 @@
     <h2>Therapie toevoegen</h2>
     <%= simple_form_for(@therapy) do |f| %>
         <%= f.input :name %>
-        <%= f.input :description %>
+        <%= f.text :description %>
         <%= f.button :submit %>
     <% end %>
   </div>
