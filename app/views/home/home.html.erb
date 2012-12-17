@@ -1,18 +1,6 @@
-<div class="tabbable"> <!-- Only required for left/right tabs -->
-  <ul class="nav nav-tabs">
-    <li class="active"><a href="home">Home</a></li>
-    <li><a href="agenda">Agenda</a></li>
-    <li><a href="client">Cliënten</a></li>
-    <li><a href="therapy">Therapieën</a></li>
-    <li><a href="colleague">Collega's</a></li>
-  </ul>
-
-  <div class="page-header well">
-    <h2>Therapie toevoegen</h2>
-    <%= simple_form_for(@therapy) do |f| %>
-        <%= f.input :name %>
-        <%= f.text :description %>
-        <%= f.button :submit %>
-    <% end %>
-  </div>
-</div>
+<h2>Therapie toevoegen</h2>
+<%= simple_form_for(@therapy) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.button :submit %>
+<% end %>
