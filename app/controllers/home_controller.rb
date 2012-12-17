@@ -11,12 +11,4 @@ class HomeController < ApplicationController
     @therapy = Therapy.new
   end
 
-  def lalala
-
-  end
-
-  def testfunctie
-
-  end
-
 end
