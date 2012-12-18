@@ -3,7 +3,7 @@ class TherapiesController < ApplicationController
   before_filter :signed_in_user
 
   def index
-    @therapy = Therapy.new
+    @therapies = Therapy.all
     #@game.rounds.build
   end
 
