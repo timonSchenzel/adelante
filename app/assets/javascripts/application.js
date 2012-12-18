@@ -12,11 +12,31 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require bootstrap
 //= require_tree .
 
+$(document).ready(function(){
+    var sampleTags = ['c++', 'java', 'php', 'coldfusion', 'javascript', 'asp', 'ruby', 'python', 'c', 'scala', 'groovy', 'haskell', 'perl', 'erlang', 'apl', 'cobol', 'go', 'lua'];
+
+    $('.tags').tagsInput({
+        autocomplete_url: site_url('therapies/autocomplete'),
+        autocomplete:{selectFirst:true,width:'100px',autoFill:true},
+        'width':'100%'
+    });
+});
+
+function site_url(addition_url) {
+    if(typeof(addition_url) == 'undefined') {
+        addition_url = '';
+    }
+
+    return 'http://localhost:3000/' + addition_url;
+}
+
 jQuery (function ($)
-{   // ready
+{
+   // ready
     $(window).resize (function (event)
     {
         var minwidth = 1200;

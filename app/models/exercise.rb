@@ -1,3 +1,4 @@
 class Exercise < ActiveRecord::Base
-  attr_accessible :descriptions, :name, :therapy_id
+  attr_accessible :descriptions, :name
+
 end
