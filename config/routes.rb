@@ -1,6 +1,8 @@
 Adelante::Application.routes.draw do
   root to: 'home#home'
 
+  match '/therapies/autocomplete', to: 'therapies#autocomplete', via: :get
+
   resources :sessions, only: [:new, :create, :destroy]
   resources :therapists
   resources :therapies

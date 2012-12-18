@@ -4,7 +4,7 @@ class HomeController < ApplicationController
 
   def index
     @therapy = Therapy.new
-    #@game.rounds.build
+    @therapy.exercises.build
   end
 
   def home

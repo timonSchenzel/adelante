@@ -1,6 +1,13 @@
 <h2>Therapie toevoegen</h2>
 <%= simple_form_for(@therapy) do |f| %>
     <%= f.input :name %>
-    <%= f.input :description, style: 'height: 100px;' %>
+    <%= f.input :description, :input_html => { style: 'height: 150px !important;' } %>
+    <p><label>Tags</label>
+    <p><input name="tags" id="tags" class="tags span12" value="foo,bar,baz" /></p>
+
+
+      <a href="javascript:;" class="btn btn-large btn-fluid-sub" onclick="add_tag_fields();">Add more tag fields</a>
+    </div>
+
     <%= f.button :submit, class: 'btn btn-fluid' %>
 <% end %>
