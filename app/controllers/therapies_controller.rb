@@ -19,10 +19,11 @@ class TherapiesController < ApplicationController
       if(new_tag.nil?) #It don't exists, so create it
         new_tag = Tag.create({ tag: value.downcase })
       end
-      TherapiesTags.create({ therapy_id: new_therapy.id, tag_id: new_tag.id })
+      TherapiesTag.create({ therapy_id: new_therapy.id, tag_id: new_tag.id })
     end
 
-    redirect_to new_exercise_path(id: new_therapy.id)
+    redirect_to therapies_path
+    #new_exercise_path(id: new_therapy.id)
   end
 
   def autocomplete
