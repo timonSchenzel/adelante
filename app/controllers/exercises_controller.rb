@@ -1,14 +1,21 @@
-class TherapiesController < ApplicationController
+class ExercisesController < ApplicationController
 
   before_filter :signed_in_user
 
   def index
-    @therapies = Therapy.find(:all, order: 'id desc')
+    @therapies = Therapy.all
     #@game.rounds.build
   end
 
   def show
 
+  end
+
+  def new
+    @exercise = Exercise.new
+    #1.times do |number|
+    #  @exercise.files.build
+    #end
   end
 
   def create

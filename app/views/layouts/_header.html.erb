@@ -3,6 +3,16 @@
     <div class="container">
       <%= link_to "Adelante", root_path, id: "logo" %>
       <nav>
+        <ul class="nav pull-left">
+            <li>
+              <div class="input-append" style="margin-left: 100px;">
+                <input class="span5" id="search-input" type="text" onkeyup="show_suggestions();">
+                <button class="btn" type="button">Zoeken</button>
+              </div>
+              <div id="search-result" style="display: none;" onclick="$(this).slideUp(500);"></div>
+            </li>
+        </ul>
+
         <ul class="nav pull-right">
           <li><%= link_to "Home", root_path %></li>
           <li><%= link_to "Help", "#" %></li>

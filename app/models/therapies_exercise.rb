@@ -1,4 +1,4 @@
-class TherapiesExercises < ActiveRecord::Base
+class TherapiesExercise < ActiveRecord::Base
   attr_accessible :therapy_id, :exercise_id
 
   belongs_to :therapy

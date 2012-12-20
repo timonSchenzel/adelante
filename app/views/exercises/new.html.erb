@@ -1,0 +1,19 @@
+<h2>Oefening toevoegen</h2>
+<%= simple_form_for(@exercise) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description, :input_html => { style: 'height: 100px !important;' } %>
+
+    <div class="well">
+      Tags (One word per field!)<br />
+      <div id="tags_container">
+        <%= f.fields_for(:files) do |rf| %>
+            <%= rf.input :file %>
+        <% end %>
+      </div>
+      <a href="javascript:;" class="btn btn-large btn-fluid-sub" onclick="add_tag_fields();">Add more tag fields</a>
+    </div>
+
+    <p><label>Tags</label>
+    <p><input name="tags" id="tags" class="tags span12" value="" /></p>
+    <%= f.submit 'Toevoegen', class: 'btn btn-fluid' %>
+<% end %>

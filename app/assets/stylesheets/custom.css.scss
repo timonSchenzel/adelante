@@ -18,8 +18,12 @@ body {
 }
 
 .well { color: #333; }
+.my-well { background-color: #D8D8D8; }
 
 .logo_container { font-family: Calibri; }
+
+ul.nav-tabs li a { color: white; }
+ul.nav-tabs li:hover a { color: #000000; }
 
 div.tab-content {
   padding-bottom: 9px;

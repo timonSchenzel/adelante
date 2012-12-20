@@ -4,11 +4,13 @@ class HomeController < ApplicationController
 
   def index
     @therapy = Therapy.new
-    @therapy.exercises.build
   end
 
   def home
     @therapy = Therapy.new
+    1.times do |number|
+      @therapy.exercises.build
+    end
   end
 
 end

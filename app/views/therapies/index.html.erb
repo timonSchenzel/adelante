@@ -1,14 +1,27 @@
-     <table class="table table-striped">
-       <thead>
-           <th>Naam</th>
-           <th>Omschrijving</th>
-       </thead>
-       <tbody>
-       <% @therapies.each do |therapy| %>
-           <tr>
-             <td><%= therapy.name %></td>
-             <td><%= therapy.description  %></td>
-           </tr>
+ <table class="table table-striped">
+   <thead>
+       <th>Naam</th>
+       <th>Omschrijving</th>
+       <th></th>
+   </thead>
+   <tbody>
+   <% @therapies.each do |therapy| %>
+       <tr style="border-top: solid 2px black;">
+         <td><strong><%= therapy.name %></strong></td>
+         <td colspan="2"><strong><%= therapy.description  %></strong></td>
+       </tr>
+       <tr>
+         <td></td>
+         <td colspan="2">Oefeningen</td>
+       </tr>
+       <% therapy.exercises.each do |exercise| %>
+       <tr>
+         <td></td>
+         <td><%= exercise.name %></td>
+         <td><%= exercise.description %></td>
+       </tr>
        <% end %>
-       </tbody>
-     </table>
+       </tr>
+   <% end %>
+   </tbody>
+ </table>
