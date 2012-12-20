@@ -3,8 +3,9 @@ class SearchController < ApplicationController
   before_filter :signed_in_user
 
   def suggestions
-    therapies = Therapy.find(:all, :limit => 10, :include => [:therapies_tags, :tags], :conditions => ["tags.tag = ?", "%#{params[:term]}%"], :select => "therapies.*")
-    exercises = Exercise.find(:all, :limit => 10, :conditions => ["exercises.name LIKE ?", "%#{params[:term]}%"], :select => "exercises.*")
+    therapies = Therapy.all(:limit => 10, :joins => :tags,
+                             :conditions => ["tags.tag LIKE ?", "%#{params[:term]}%"], :select => "therapies.*")
+    exercises = Exercise.all(:limit => 10, :conditions => ["exercises.name LIKE ?", "%#{params[:term]}%"], :select => "exercises.*")
 
     #.where("tags.tag = ?", "%#{params[:terms]}%")
     #tags = Tag.where("tag like ?", "%#{params[:term]}%")
