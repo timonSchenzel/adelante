@@ -7,5 +7,7 @@ class Therapy < ActiveRecord::Base
   has_many :therapies_tags
   has_many :tags, :through => :therapies_tags
 
+  has_many :saved_therapies
+
   accepts_nested_attributes_for :exercises
 end

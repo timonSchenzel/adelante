@@ -3,8 +3,11 @@ class TherapiesController < ApplicationController
   before_filter :signed_in_user
 
   def index
-    @therapies = Therapy.find(:all, order: 'id desc')
-    #@game.rounds.build
+    @therapies = Therapy.all(order: 'id desc')
+    @therapy = Therapy.new
+    1.times do |number|
+      @therapy.exercises.build
+    end
   end
 
   def show

@@ -22,8 +22,12 @@ body {
 
 .logo_container { font-family: Calibri; }
 
-ul.nav-tabs li a { color: white; }
-ul.nav-tabs li:hover a { color: #000000; }
+ul#main-menu li a { color: white; }
+ul#main-menu li:hover a { color: #000000; }
+ul#main-menu li.active a { color: #000000; }
+
+.search-btn { padding: 3px 10px; }
+.search-form { margin-left: 5px; }
 
 div.tab-content {
   padding-bottom: 9px;

@@ -1,27 +1,101 @@
- <table class="table table-striped">
-   <thead>
-       <th>Naam</th>
-       <th>Omschrijving</th>
-       <th></th>
-   </thead>
-   <tbody>
-   <% @therapies.each do |therapy| %>
-       <tr style="border-top: solid 2px black;">
-         <td style="width: 150px;"><strong><%= therapy.name %></strong></td>
-         <td colspan="2" style="width: 150px;"><strong><%= therapy.description  %></strong></td>
-       </tr>
-       <tr>
-         <td></td>
-         <td colspan="2">Oefeningen</td>
-       </tr>
-       <% therapy.exercises.each do |exercise| %>
-       <tr>
-         <td></td>
-         <td><%= exercise.name %></td>
-         <td><%= exercise.description %></td>
-       </tr>
-       <% end %>
-       </tr>
-   <% end %>
-   </tbody>
- </table>
+<div class="tabbable">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#my" data-toggle="tab">Mijn therapi&euml;en</a></li>
+    <li><a href="#other" data-toggle="tab">Andere therapi&euml;en</a></li>
+    <li><a href="#detail" data-toggle="tab">Detail</a></li>
+    <li><a href="#add" data-toggle="tab">Therapie toevoegen</a></li>
+    <li class="pull-right">
+      <div class="input-append search-form">
+        <input class="span3" id="therapy-search" type="text" style="float: left;">
+          <div class="btn-group" style="float: left;">
+            <a class="btn search-btn" href="#"><i class="icon-search"></i></a>
+          </div>
+      </div>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="my">
+      <table class="table table-striped">
+        <thead>
+        <th>Naam</th>
+        <th>Omschrijving</th>
+        <th></th>
+        </thead>
+        <tbody>
+        <% @current_user.saved_therapies.each do |ts| %>
+            <tr style="border-top: solid 2px black;">
+              <td style="width: 150px;"><strong><%= ts.therapy.name %></strong></td>
+              <td colspan="2" style="width: 150px;"><strong><%= ts.therapy.description  %></strong></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td colspan="2">Oefeningen</td>
+            </tr>
+            <% ts.therapy.exercises.each do |exercise| %>
+                <tr>
+                  <td></td>
+                  <td><%= exercise.name %></td>
+                  <td><%= exercise.description %></td>
+                </tr>
+            <% end %>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="tab-pane" id="other">
+      <table class="table table-striped">
+        <thead>
+        <th>Naam</th>
+        <th>Omschrijving</th>
+        <th></th>
+        </thead>
+        <tbody>
+        <% @therapies.each do |therapy| %>
+            <tr style="border-top: solid 2px black;">
+              <td style="width: 150px;"><strong><%= therapy.name %></strong></td>
+              <td colspan="2" style="width: 150px;"><strong><%= therapy.description  %></strong></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td colspan="2">Oefeningen</td>
+            </tr>
+            <% therapy.exercises.each do |exercise| %>
+                <tr>
+                  <td></td>
+                  <td><%= exercise.name %></td>
+                  <td><%= exercise.description %></td>
+                </tr>
+            <% end %>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="tab-pane" id="detail">
+      <p>Howdy, I'm in Section 2.</p>
+    </div>
+    <div class="tab-pane" id="add">
+      <%= simple_form_for(@therapy) do |f| %>
+          <%= f.input :name %>
+          <%= f.input :description, :input_html => { style: 'height: 100px !important;' } %>
+          <p><label>Tags</label>
+          <p><input name="tags" id="tags" class="tags span12" value="" /></p>
+
+          <h3>Nieuw oefening toevoegen</h3>
+          <div id="exercises_container">
+            <div class="well my-well">
+              <%= f.fields_for(:exercises) do |rf| %>
+                  <%= rf.input :name %>
+                  <%= rf.input :description, :input_html => { style: 'height: 100px !important;' } %>
+              <% end %>
+            </div>
+          </div>
+          <a href="javascript:;" class="btn btn-large btn-fluid-sub" onclick="add_exercise_fields();">Meer oefeningen toevoegen</a>
+
+
+          <%= f.submit 'Toevoegen', class: 'btn btn-fluid' %>
+      <% end %>
+    </div>
+  </div>
+</div>
