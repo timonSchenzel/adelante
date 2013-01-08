@@ -4,6 +4,9 @@ class TherapiesController < ApplicationController
 
   def index
     @therapies = Therapy.all(order: 'id desc')
+
+    @latest_therapies = Therapy.recent_limit
+
     @therapy = Therapy.new
     1.times do |number|
       @therapy.exercises.build
@@ -11,7 +14,11 @@ class TherapiesController < ApplicationController
   end
 
   def show
+    @therapy = Therapy.find(params[:id])
 
+    if request.xhr?
+      render layout: false
+    end
   end
 
   def create

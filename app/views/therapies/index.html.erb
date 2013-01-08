@@ -1,4 +1,4 @@
-<script>
+<script type="text/javascript">
     $(function() {
 
         $(".knob").knob({
@@ -91,7 +91,6 @@
   <ul class="nav nav-tabs">
     <li class="active"><a href="#my" data-toggle="tab">Mijn therapi&euml;en</a></li>
     <li><a href="#other" data-toggle="tab">Andere therapi&euml;en</a></li>
-    <li><a href="#detail" data-toggle="tab">Detail</a></li>
     <li><a href="#add" data-toggle="tab">Therapie toevoegen</a></li>
     <li class="pull-right">
       <div class="input-append search-form">
@@ -104,55 +103,22 @@
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="my">
-      <table class="table table-striped">
-        <thead>
-        <th>Naam</th>
-        <th>Omschrijving</th>
-        <th></th>
-        </thead>
-        <tbody>
-        <% @current_user.saved_therapies.each do |ts| %>
-            <tr style="border-top: solid 2px black;">
-              <td style="width: 150px;"><strong><%= ts.therapy.name %></strong></td>
-              <td colspan="2" style="width: 150px;"><strong><%= ts.therapy.description  %></strong></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td colspan="2">Oefeningen</td>
-            </tr>
-            <% ts.therapy.exercises.each do |exercise| %>
-                <tr>
-                  <td></td>
-                  <td><%= exercise.name %></td>
-                  <td><%= exercise.description %></td>
-                </tr>
-            <% end %>
-            </tr>
-        <% end %>
-        </tbody>
-      </table>
+      <div class="row-fluid">
+        <ul class="thumbnails">
+          <% @current_user.saved_therapies.each do |st| %>
+            <%= render 'therapies/therapy_item', { therapy: st.therapy }  %>
+          <% end %>
+        </ul>
+      </div>
     </div>
     <div class="tab-pane" id="other">
         <div class="row-fluid">
           <ul class="thumbnails">
-        <% @therapies.each do |therapy| %>
-
-                <li class="span4">
-                  <div class="thumbnail">
-                    <input class="knob" data-width="150" data-height="150" data-fgColor="chartreuse" data-thickness=".4" data-readOnly=true value="22">
-                    <div class="caption">
-                      <h3><%= therapy.name %></h3>
-                      <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                      <p><a href="#" class="btn btn-primary">Action</a> <a href="#" class="btn">Action</a></p>
-                    </div>
-                  </div>
-                </li>
-        <% end %>
+            <% @latest_therapies.each do |therapy| %>
+                <%= render 'therapies/therapy_item', { therapy: therapy }  %>
+            <% end %>
           </ul>
         </div>
-    </div>
-    <div class="tab-pane" id="detail">
-      <p>Howdy, I'm in Section 2.</p>
     </div>
     <div class="tab-pane" id="add">
       <%= simple_form_for(@therapy) do |f| %>

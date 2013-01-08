@@ -116,13 +116,13 @@
                 this.i.each(function(k) {
                     var $this = $(this);
                     s.i[k] = $this;
-                    s.v[k] = $this.val();
+                    s.v[k] = $this.$.data('value');
 
                     $this.bind(
                         'change'
                         , function () {
                             var val = {};
-                            val[k] = $this.val();
+                            val[k] = $this.$.data('value');
                             s.val(val);
                         }
                     );
@@ -132,7 +132,7 @@
             } else {
                 // input = integer
                 this.i = this.$;
-                this.v = this.$.val();
+                this.v = this.$.data('value');
                 (this.v == '') && (this.v = this.o.min);
 
                 this.$.bind(

@@ -10,4 +10,6 @@ class Therapy < ActiveRecord::Base
   has_many :saved_therapies
 
   accepts_nested_attributes_for :exercises
+
+  scope :recent_limit, :order => :updated_at, :limit => "8"
 end

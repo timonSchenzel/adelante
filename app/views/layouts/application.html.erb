@@ -9,6 +9,9 @@
     <%= render 'layouts/shim' %>
 </head>
 <body>
+    <!-- Modal container -->
+    <div style="display: none;" id="modalContainer" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true"></div>
+
     <% if(@render_header == true || @render_header.nil?) %>
         <%= render 'layouts/header' %>
     <% end %>

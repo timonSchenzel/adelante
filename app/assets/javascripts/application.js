@@ -26,6 +26,37 @@ $(document).ready(function(){
     });
 });
 
+function getDialog(me) {
+    $('#modalContainer').ajaxGetModal(
+        site_url($(me).attr('href'))
+    );
+}
+
+function postDialog(me, args) {
+    $('#modalContainer').ajaxPostModal(
+        site_url($(me).attr('href')),
+        args
+    );
+}
+
+$.fn.ajaxPostModal = function(url, data) {
+    $(this).load(url, data, function(){
+        $(this).modal({
+            keyboard:true,
+            backdrop:true
+        });
+    }).modal('show');
+}
+
+$.fn.ajaxGetModal = function(url) {
+    $(this).load(url, function(){
+        $(this).modal({
+            keyboard:true,
+            backdrop:true
+        });
+    }).modal('show');
+}
+
 function show_suggestions() {
     var result, exercises_result, therapies_result;
     $.getJSON(site_url('search/suggestions?term=' + $('input#search-input').val()), function(data) {
@@ -71,8 +102,11 @@ function add_exercise_fields() {
 }
 
 function site_url(addition_url) {
+
     if(typeof(addition_url) == 'undefined') {
         addition_url = '';
+    } else if(addition_url.substring(0,1) == '/') {
+        addition_url = addition_url.substring(1);
     }
 
     return 'http://localhost:3000/' + addition_url;
