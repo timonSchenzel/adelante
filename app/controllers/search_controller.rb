@@ -7,8 +7,6 @@ class SearchController < ApplicationController
                              :conditions => ["tags.tag LIKE ?", "%#{params[:term]}%"], :select => "therapies.*")
     exercises = Exercise.all(:limit => 10, :conditions => ["exercises.name LIKE ?", "%#{params[:term]}%"], :select => "exercises.*")
 
-    #.where("tags.tag = ?", "%#{params[:terms]}%")
-    #tags = Tag.where("tag like ?", "%#{params[:term]}%")
     therapies_array = Array.new
     therapies.each do |therapy|
       therapies_array.push(therapy.name)

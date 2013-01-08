@@ -1,9 +1,10 @@
+@import "bootstrap";
+@import "bootstrap/reset";
+
 @font-face {
   font-family: geo_sans;
   src: url('geo_sans_light/GeosansLight.ttf');
 }
-
-@import "bootstrap";
 
 html {
 
@@ -253,4 +254,26 @@ aside {
     height: 100px;
     margin-bottom: 5px;
   }
+}
+
+//Clients
+.circle_photo {
+  -moz-border-bottom-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc;
+  -moz-border-top-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc;
+  -moz-border-left-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc;
+  -moz-border-right-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc;
+  padding: 5px 5px 5px 15px;
+
+  max-height: 100px;
+  border-radius: 50%;
+  border: 8px solid #000;
+}
+
+.client_info_photo {
+  margin-left: 35px;
+  clear: both;
+}
+
+.client_info_name {
+text-align: center;
 }

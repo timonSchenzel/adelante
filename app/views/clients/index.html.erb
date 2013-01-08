@@ -1,0 +1,50 @@
+<%= Therapist.find(@current_user.id).clients().map.select(&:id).join(',') %>
+
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#tab1" data-toggle="tab">Mijn cliënten</a></li>
+    <li><a href="#tab2" data-toggle="tab">Overige cliënten</a></li>
+    <li><a href="#tab2" data-toggle="tab">Details</a></li>
+    <li class="pull-right">
+      <div class="input-append search-form">
+        <input class="span3" id="therapy-search" type="text" style="float: left;">
+        <div class="btn-group" style="float: left;">
+          <a class="btn search-btn" href="#"><i class="icon-search"></i></a>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+       <div class="row">
+      <% @personal_clients.each do |client| %>
+         <div class="span3">
+           <div class="client_info_photo">
+            <%= link_to image_tag(client.photo, :class => 'circle_photo')  %>
+           </div>
+          <div class="client_info_name">
+           <%= client.name %>
+          </div>
+         </div>
+      <% end %>
+       </div>
+    </div>
+    <div class="tab-pane" id="tab2">
+      <p>
+      <% @other_clients.each do |therapeut| %>
+        <% therapeut.clients.each do |client| %>
+              <div class="span3">
+                <div class="client_info_photo">
+                  <%= link_to image_tag(client.photo, :class => 'circle_photo')  %>
+                </div>
+                <div class="client_info_name">
+                  <%= client.name %>
+                </div>
+              </div>
+        <% end %>
+      <% end %>
+      </p>
+    </div>
+  </div>
+</div>
+
