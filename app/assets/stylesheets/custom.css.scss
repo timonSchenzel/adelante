@@ -18,6 +18,9 @@ body {
   color: #ffffff;
 }
 
+input.knob { cursor: default; }
+div.knob { display: table !important; margin: 0 auto; }
+
 .well { color: #333; }
 .my-well { background-color: #D8D8D8; }
 
