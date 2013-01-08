@@ -1,10 +1,8 @@
-<%= Therapist.find(@current_user.id).clients().map.select(&:id).join(',') %>
-
 <div class="tabbable"> <!-- Only required for left/right tabs -->
   <ul class="nav nav-tabs">
     <li class="active"><a href="#tab1" data-toggle="tab">Mijn cliënten</a></li>
     <li><a href="#tab2" data-toggle="tab">Overige cliënten</a></li>
-    <li><a href="#tab2" data-toggle="tab">Details</a></li>
+    <li><a href="#tab3" data-toggle="tab">Details</a></li>
     <li class="pull-right">
       <div class="input-append search-form">
         <input class="span3" id="therapy-search" type="text" style="float: left;">
@@ -20,7 +18,7 @@
       <% @personal_clients.each do |client| %>
          <div class="span3">
            <div class="client_info_photo">
-            <%= link_to image_tag(client.photo, :class => 'circle_photo')  %>
+            <%= link_to image_tag(client.photo, :class => 'circle_photo', ), client   %>
            </div>
           <div class="client_info_name">
            <%= client.name %>
@@ -31,19 +29,37 @@
     </div>
     <div class="tab-pane" id="tab2">
       <p>
-      <% @other_clients.each do |therapeut| %>
-        <% therapeut.clients.each do |client| %>
+        <% @other_clients.each do |client| %>
               <div class="span3">
                 <div class="client_info_photo">
-                  <%= link_to image_tag(client.photo, :class => 'circle_photo')  %>
+                  <%= link_to image_tag(client.photo, :class => 'circle_photo'),client  %>
                 </div>
                 <div class="client_info_name">
                   <%= client.name %>
                 </div>
               </div>
         <% end %>
-      <% end %>
       </p>
+    </div>
+    <div class="tab-pane" id="tab3">
+
+      <div class="tabbable"> <!-- Only required for left/right tabs -->
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#tab4" data-toggle="tab">Persoonsgegevens</a></li>
+          <li><a href="#tab5" data-toggle="tab">Sessies</a></li>
+          <li><a href="#tab6" data-toggle="tab">Grafiek</a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="tab4">
+          </div>
+          <div class="tab-pane" id="tab5">
+          </div>
+          <div class="tab-pane" id="tab6">
+
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

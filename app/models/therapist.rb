@@ -1,5 +1,4 @@
 class Therapist < ActiveRecord::Base
-  scope :not_own_clients, lambda { |client_list| {:conditions => ['client.id NOT IN = (?)',Therapist.find(@current_user.id).clients().map.select(&:id).join(',')]} }
 
   attr_accessible :name, :email, :password, :password_confirmation
   has_many :clients_therapists

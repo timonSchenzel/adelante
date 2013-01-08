@@ -13,8 +13,8 @@ Adelante::Application.routes.draw do
   resources :colleagues
 
   match '/home',  to: 'home#home'
-  match '/clients',  to: 'client#index'
-  match '/client/:id',  to: 'client#show'
+  #match '/clients',  to: 'client#index'
+  #match '/client/:id',  to: 'client#show'
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
   match '/client/ajax_show/(:id)', to: 'client#ajax_show', via: :get
