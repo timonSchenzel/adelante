@@ -12,11 +12,14 @@ Adelante::Application.routes.draw do
   resources :clients
   resources :colleagues
 
+  match '/saved_therapies/create/(:id)', to: 'saved_therapies#create', via: :get, as: :create_saved_therapies
+  match '/saved_therapies/delete/(:id)', to: 'saved_therapies#delete', via: :get, as: :delete_saved_therapies
+
   match '/home',  to: 'home#home'
   #match '/clients',  to: 'client#index'
   #match '/client/:id',  to: 'client#show'
-  match '/signin',  to: 'Clientsessions#new'
-  match '/signout', to: 'Clientsessions#destroy', via: :delete
+  match '/signin',  to: 'sessions#new'
+  match '/signout', to: 'sessions#destroy', via: :delete
   match '/client/ajax_show/(:id)', to: 'client#ajax_show', via: :get
 
   # The priority is based upon order of creation:

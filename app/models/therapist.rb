@@ -1,8 +1,15 @@
 class Therapist < ActiveRecord::Base
 
   attr_accessible :name, :email, :password, :password_confirmation
+
   has_many :clients_therapists
   has_many :clients, :through => :clients_therapists
+
+  has_many :therapists_therapies
+  has_many :therapies, :through => :therapists_therapies
+
+  has_many :saved_therapies
+
   has_secure_password
 
   before_save { |user| user.email = email.downcase }
@@ -14,7 +21,17 @@ class Therapist < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
 
-  has_many :saved_therapies
+  def is_therapy_creator(therapy_id)
+    self.therapists_therapies.exists?(therapy_id: therapy_id, is_creator: true)
+  end
+
+  def is_therapy_owner(therapy_id)
+    self.therapies.find_by_therapy_id(therapy_id: therapy_id)
+  end
+
+  def has_therapy_saved(therapy_id)
+    self.saved_therapies.exists?(therapy_id: therapy_id)
+  end
 
   private
   def create_remember_token

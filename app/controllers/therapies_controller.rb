@@ -32,6 +32,9 @@ class TherapiesController < ApplicationController
       TherapiesTag.create({ therapy_id: new_therapy.id, tag_id: new_tag.id })
     end
 
+    #Add the therapist creator
+    @current_user.therapists_therapy.create({ therapy_id: new_therapy.id, is_creator: true })
+
     redirect_to therapies_path
     #new_exercise_path(id: new_therapy.id)
   end

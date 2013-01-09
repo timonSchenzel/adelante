@@ -17,6 +17,29 @@
 //= require_tree .
 
 $(document).ready(function(){
+
+    $('[placeholder]').focus(function() {
+        var input = $(this);
+        if (input.val() == input.attr('placeholder')) {
+            input.val('');
+            input.removeClass('placeholder');
+        }
+    }).blur(function() {
+            var input = $(this);
+            if (input.val() == '' || input.val() == input.attr('placeholder')) {
+                input.addClass('placeholder');
+                input.val(input.attr('placeholder'));
+            }
+        }).blur().parents('form').submit(function() {
+            $(this).find('[placeholder]').each(function() {
+                var input = $(this);
+                if (input.val() == input.attr('placeholder')) {
+                    input.val('');
+                }
+            })
+        });
+
+
     var sampleTags = ['c++', 'java', 'php', 'coldfusion', 'javascript', 'asp', 'ruby', 'python', 'c', 'scala', 'groovy', 'haskell', 'perl', 'erlang', 'apl', 'cobol', 'go', 'lua'];
 
     $('.tags').tagsInput({
@@ -114,6 +137,17 @@ function site_url(addition_url) {
 
 jQuery (function ($)
 {
+    $('input[placeholder]').tooltip({
+        trigger: 'focus',
+        placement: 'left',
+        selector: $(this).attr('placeholder')
+    });
+
+    $('textarea[placeholder]').tooltip({
+        trigger: 'focus',
+        placement: 'left',
+        selector: $(this).attr('placeholder')
+    });
    // ready
     $(window).resize (function (event)
     {

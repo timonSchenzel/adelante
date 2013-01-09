@@ -90,6 +90,7 @@
 <div class="tabbable">
   <ul class="nav nav-tabs">
     <li class="active"><a href="#my" data-toggle="tab">Mijn therapi&euml;en</a></li>
+    <li><a href="#favorites" data-toggle="tab">Favorieten</a></li>
     <li><a href="#other" data-toggle="tab">Andere therapi&euml;en</a></li>
     <li><a href="#add" data-toggle="tab">Therapie toevoegen</a></li>
     <li class="pull-right">
@@ -105,8 +106,17 @@
     <div class="tab-pane active" id="my">
       <div class="row-fluid">
         <ul class="thumbnails">
+          <% @current_user.therapies.each do |therapy| %>
+            <%= render 'therapies/therapy_item', { therapy: therapy }  %>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <div class="tab-pane" id="favorites">
+      <div class="row-fluid">
+        <ul class="thumbnails">
           <% @current_user.saved_therapies.each do |st| %>
-            <%= render 'therapies/therapy_item', { therapy: st.therapy }  %>
+              <%= render 'therapies/therapy_item', { therapy: st.therapy }  %>
           <% end %>
         </ul>
       </div>
@@ -122,8 +132,8 @@
     </div>
     <div class="tab-pane" id="add">
       <%= simple_form_for(@therapy) do |f| %>
-          <%= f.input :name %>
-          <%= f.input :description, :input_html => { style: 'height: 100px !important;' } %>
+          <%= f.input :name, placeholder: 'Naam: Wat is de titel van deze therapie?', class: 'placeholder' %>
+          <%= f.input :description, :input_html => { style: 'height: 100px !important;', placeholder: 'Omschrijving: Geef een duidelijke omschrijving van deze therapie. Wat kan met deze therapie worden bereikt?', class: 'placeholder' } %>
           <p><label>Tags</label>
           <p><input name="tags" id="tags" class="tags span12" value="" /></p>
 
