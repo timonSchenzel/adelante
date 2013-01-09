@@ -1,1 +1,49 @@
-<%= @p %>
+<div class="well row pull-right">
+  <input type="submit" class="btn btn-primary" value="Nieuwe sessie"k>
+</div>
+
+<div class="row">
+  <div class="span3 pull-left"><%= image_tag(@client.photo, :class => 'img-polaroid')  %></div>
+  <div class="span8 pull-right">
+    <h1><%= @client.name %></h1>
+    <p>
+      <%= @client.dossier.description %>
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span11">
+    <table class="table table-striped">
+      <thead>
+          <th>Sessie datum</th>
+          <th>Therapie</th>
+          <th>Oefening</th>
+          <th>Score</th>
+          <th>Vorige oef.</th>
+          <th>Sluit aan</th>
+          <th>Niveau</th>
+          <th>VVC</th>
+          <th>VVT</th>
+          <th>Naam therapeut</th>
+      </thead>
+      <tbody>
+      <tr>
+        <% @clientSessions.each do |clientSession|  %>
+           <td> <%= clientSession.date  %> </td>
+            <td> <%= clientSession.notes  %> </td>
+            <td> :: <%= clientSession.exercises  %> </td>
+
+
+            <% clientSession.exercises.each do |exercise| %>
+               <%=  exercise.name %>
+            <% end %>
+
+
+        <% end  %>
+
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

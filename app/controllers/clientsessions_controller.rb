@@ -1,4 +1,4 @@
-class SessionsController < ApplicationController
+class ClientsessionsController < ApplicationController
   def new
     @render_header = false
     @render_footer = false

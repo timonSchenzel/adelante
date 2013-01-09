@@ -18,6 +18,8 @@ class ClientsController < ApplicationController
   end
 
   def show
-      @p = params
+    @client = Client.find(params[:id])
+    @clientSessions = @client.clientsessions
   end
+
 end

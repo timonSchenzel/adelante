@@ -4,7 +4,7 @@ Adelante::Application.routes.draw do
   match '/therapies/autocomplete', to: 'therapies#autocomplete', via: :get
   match '/search/suggestions', to: 'search#suggestions', via: :get
 
-  resources :sessions, only: [:new, :create, :destroy]
+  resources :clientsessions, only: [:new, :create, :destroy]
   resources :therapists
   resources :therapies
   resources :exercises
@@ -15,8 +15,8 @@ Adelante::Application.routes.draw do
   match '/home',  to: 'home#home'
   #match '/clients',  to: 'client#index'
   #match '/client/:id',  to: 'client#show'
-  match '/signin',  to: 'sessions#new'
-  match '/signout', to: 'sessions#destroy', via: :delete
+  match '/signin',  to: 'Clientsessions#new'
+  match '/signout', to: 'Clientsessions#destroy', via: :delete
   match '/client/ajax_show/(:id)', to: 'client#ajax_show', via: :get
 
   # The priority is based upon order of creation:
