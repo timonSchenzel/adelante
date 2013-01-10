@@ -34,9 +34,9 @@
             <td> <%= clientSession.notes  %> </td>
             <td> :: <%= clientSession.exercises  %> </td>
 
-
             <% clientSession.exercises.each do |exercise| %>
                <%=  exercise.name %>
+               <%=  exercise.therapies %>
             <% end %>
 
 
