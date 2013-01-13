@@ -1,0 +1,25 @@
+<h2>Bestaande oefening(en) toevoegen</h2>
+<%= form_for(@therapies_exercises, html: { onsubmit: 'select_all_options();' }) do |f| %>
+    <input type="hidden" name="therapy_id" value="<%= params[:id] %>">
+    <div style="display: table; width: 100%;">
+      <div class="thumbnail" style="width: 40%; float: left; margin: 0 5px;">
+        <input type="text" style="width: 100%;" placeholder="Zoek naar oefeningen.." id="search-exercises"  data-suggestions="true" data-action="<%= show_existing_suggestions_path() %>">
+        <div style="height: 400px; background-color: #ffffff;">
+          <select name="exisiting_exercises" id='exisiting-exercises-container' size="24"></select>
+        </div>
+      </div>
+      <div class="thumbnail" style="width: 13%; height: 434px; background-color: #ffffff; float: left; margin: 0 6px; display: table;">
+        <div style="display: table-cell; vertical-align: middle;">
+          <button class="btn btn-success" type="button" style="width: 100%;" onclick="add_existing_exercise();">Toevoegen&nbsp;&gt;</button>
+          <button class="btn btn-danger" type="button" style="width: 100%;" onclick="remove_existing_exercise();">&lt;&nbsp;Verwijderen</button>
+        </div>
+      </div>
+      <div class="thumbnail" style="width: 40%; float: left; margin: 0 5px;">
+        <p>Toegevoegde oefeningen</p>
+        <div style="height: 400px; background-color: #ffffff;">
+          <select name="added_exercises[]" id='added-exercises-container' size="24" multiple="true"></select>
+        </div>
+      </div>
+    </div>
+    <%= f.submit 'Oefeningen toevoegen', class: 'btn', style: 'width: 100%;' %>
+<% end %>

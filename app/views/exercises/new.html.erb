@@ -1,19 +1,19 @@
-<h2>Oefening toevoegen</h2>
-<%= simple_form_for(@exercise) do |f| %>
-    <%= f.input :name %>
-    <%= f.input :description, :input_html => { style: 'height: 100px !important;' } %>
+<h2>Nieuwe oefening toevoegen</h2>
+<%= simple_form_for(@exercise, :html => { :multipart => true }) do |f| %>
+    <input name="therapy_id" value="<%= params[:id] %>" type="hidden" />
 
-    <div class="well">
-      Tags (One word per field!)<br />
-      <div id="tags_container">
-        <%= f.fields_for(:files) do |rf| %>
-            <%= rf.input :file %>
-        <% end %>
-      </div>
-      <a href="javascript:;" class="btn btn-large btn-fluid-sub" onclick="add_tag_fields();">Add more tag fields</a>
+    <%= f.input :name,  :input_html => { placeholder: 'Wat is de titel van deze oefening?', title: 'Wat is de titel van deze oefening?' } %>
+    <%= f.input :description, :input_html => { style: 'height: 150px !important;', placeholder: 'Geeft uitleg over de uitvoering van deze oefening.', title: 'Geeft uitleg over de uitvoering van deze oefening.' } %>
+
+    Script toevoegen<br />
+    <div id="tags_container">
+
+      <%= f.simple_fields_for (:exercise_files) do |ff| %>
+        <%=  ff.file_field :attachment %>
+      <% end %>
+
     </div>
-
-    <p><label>Tags</label>
-    <p><input name="tags" id="tags" class="tags span12" value="" /></p>
-    <%= f.submit 'Toevoegen', class: 'btn btn-fluid' %>
+    <div class="controls controls-row">
+      <%= f.submit 'Oefening toevoegen', class: 'btn', style: 'width: 100%;' %>
+    </div>
 <% end %>

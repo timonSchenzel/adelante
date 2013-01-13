@@ -1,0 +1,11 @@
+<h2>Meer oefeningen toevoegen?</h2>
+<a href="<%= new_exercise_path(id: params[:id]) %>" class="btn">Nog een oefening toevoegen</a>
+<a href="<%= add_existing_exercises_path(id: params[:id]) %>" class="btn">Bestaande oefening(en) toevoegen</a>
+<a href="<%= exercise_position_path(params[:id]) %>" class="btn">Toevoegen voltooien</a>
+
+<h2>Toegevoegde oefeningen</h2>
+<ul>
+  <% @therapy.exercises.each do |exercise| %>
+    <li><%= exercise.name %></li>
+  <% end %>
+</ul>

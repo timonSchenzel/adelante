@@ -1,7 +1,7 @@
 class Therapy < ActiveRecord::Base
   attr_accessible :description, :name, :exercises_attributes, :exercises_attributes
 
-  has_and_belongs_to_many :therapies_exercises
+  has_many :therapies_exercises
   has_many :exercises, :through => :therapies_exercises
 
   has_many :clientsessions_therapies

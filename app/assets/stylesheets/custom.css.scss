@@ -26,6 +26,7 @@ body .modal {
 
 .placeholder { color: #aaa !important; }
 ::-webkit-input-placeholder { color: #aaa !important; }
+.tagsinput { cursor: default !important; }
 
 input.knob { cursor: default; }
 div.knob { display: table !important; margin: 0 auto; }

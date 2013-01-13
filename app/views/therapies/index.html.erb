@@ -132,21 +132,12 @@
     </div>
     <div class="tab-pane" id="add">
       <%= simple_form_for(@therapy) do |f| %>
-          <%= f.input :name, placeholder: 'Naam: Wat is de titel van deze therapie?', class: 'placeholder' %>
-          <%= f.input :description, :input_html => { style: 'height: 100px !important;', placeholder: 'Omschrijving: Geef een duidelijke omschrijving van deze therapie. Wat kan met deze therapie worden bereikt?', class: 'placeholder' } %>
+          <%= f.input :name, :input_html => { placeholder: 'Wat is de titel van deze therapie?', title: 'Wat is de titel van deze therapie?', class: 'placeholder' } %>
+          <%= f.input :description, :input_html => { style: 'height: 100px !important;', placeholder: 'Geef een duidelijke omschrijving van deze therapie. Wat kan met deze therapie worden bereikt?', title: 'Geef een duidelijke omschrijving van deze therapie. Wat kan met deze therapie worden bereikt?', class: 'placeholder' } %>
           <p><label>Tags</label>
-          <p><input name="tags" id="tags" class="tags span12" value="" /></p>
+          <p><input name="tags" id="tags" class="tags" value="" title="" /></p>
 
-          <h3>Nieuw oefening toevoegen</h3>
-          <div id="exercises_container">
-            <div class="well my-well">
-              <%= f.fields_for(:exercises) do |rf| %>
-                  <%= rf.input :name %>
-                  <%= rf.input :description, :input_html => { style: 'height: 100px !important;' } %>
-              <% end %>
-            </div>
-          </div>
-          <a href="javascript:;" class="btn btn-large btn-fluid-sub" onclick="add_exercise_fields();">Meer oefeningen toevoegen</a>
+
 
 
           <%= f.submit 'Toevoegen', class: 'btn btn-fluid' %>

@@ -18,6 +18,25 @@
 
 $(document).ready(function(){
 
+    $("input[data-suggestions='true']").keyup(function(){
+        $.getJSON(site_url($(this).data('action') + '?term=' + $(this).val()), function(data) {
+            $('#exisiting-exercises-container').html('');
+            $.each(data, function(index, element){
+                $('#exisiting-exercises-container').append(new Option(element.name, element.id));
+            });
+        });
+    });
+
+    $('input[placeholder]').tooltip({
+        trigger: 'focus',
+        placement: 'top'
+    });
+
+    $('textarea[placeholder]').tooltip({
+        trigger: 'focus',
+        placement: 'top'
+    });
+
     $('[placeholder]').focus(function() {
         var input = $(this);
         if (input.val() == input.attr('placeholder')) {
@@ -45,9 +64,26 @@ $(document).ready(function(){
     $('.tags').tagsInput({
         autocomplete_url: site_url('therapies/autocomplete'),
         autocomplete:{selectFirst:true,width:'100px',autoFill:true},
-        'width':'100%'
+        'width':'100%',
+        defaultText: 'Voeg tags toe (een woord waarop deze therapie goed gevonden zal worden)'
     });
 });
+
+function add_existing_exercise() {
+    console.log($('#exisiting-exercises-container option:selected').text());
+    $('#added-exercises-container').append(new Option($('#exisiting-exercises-container option:selected').text(), $('#exisiting-exercises-container option:selected').val()));
+}
+
+function remove_existing_exercise() {
+    $("#added-exercises-container option[value=" + $('#added-exercises-container option:selected').val() + "]").remove();
+}
+
+function select_all_options() {
+    $('#added-exercises-container option').each(function(){
+        console.log('test');
+        $(this).attr('selected', 'selected');
+    });
+}
 
 function getDialog(me) {
     $('#modalContainer').ajaxGetModal(
@@ -137,17 +173,6 @@ function site_url(addition_url) {
 
 jQuery (function ($)
 {
-    $('input[placeholder]').tooltip({
-        trigger: 'focus',
-        placement: 'left',
-        selector: $(this).attr('placeholder')
-    });
-
-    $('textarea[placeholder]').tooltip({
-        trigger: 'focus',
-        placement: 'left',
-        selector: $(this).attr('placeholder')
-    });
    // ready
     $(window).resize (function (event)
     {

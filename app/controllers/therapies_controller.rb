@@ -8,9 +8,9 @@ class TherapiesController < ApplicationController
     @latest_therapies = Therapy.recent_limit
 
     @therapy = Therapy.new
-    1.times do |number|
-      @therapy.exercises.build
-    end
+    #1.times do |number|
+    #  @therapy.exercises.build
+    #end
   end
 
   def show
@@ -33,10 +33,9 @@ class TherapiesController < ApplicationController
     end
 
     #Add the therapist creator
-    @current_user.therapists_therapy.create({ therapy_id: new_therapy.id, is_creator: true })
+    @current_user.therapists_therapies.create({ therapy_id: new_therapy.id, is_creator: true })
 
-    redirect_to therapies_path
-    #new_exercise_path(id: new_therapy.id)
+    redirect_to new_or_existing_question_path(id: new_therapy.id)
   end
 
   def autocomplete
