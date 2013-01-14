@@ -18,6 +18,24 @@
 
 $(document).ready(function(){
 
+    $('div.ribbon').click(function(){
+        if($(this).css('margin-top') == '-70px') {
+            $(this).addClass('disabled');
+            $(this).animate({
+                'margin-top': '-10px'
+            }, 500, function() {
+                $(this).removeClass('disabled');
+            });
+        } else {
+            $(this).addClass('disabled');
+            $(this).animate({
+                'margin-top': '-70px'
+            }, 500, function() {
+                $(this).removeClass('disabled');
+            });
+        }
+    });
+
     //Sortable function..
     $(function() {
         $("ul.sortable").sortable({ opacity: 0.6, cursor: 'move', tolerance: 'pointer', axis: 'y', helper: 'clone',  update: function() {

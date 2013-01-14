@@ -1,15 +1,16 @@
-<header class="navbar navbar-fixed-top">
+<div class="ribbon"></div>
+<header class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <%= link_to "Adelante", root_path, id: "logo" %>
+      <div class="input-append span4">
+        <input class="span2" id="search-input" type="text" onkeyup="show_suggestions();">
+        <button class="btn" type="button">Zoeken</button>
+      </div>
+      <div id="search-result" style="display: none;" onclick="$(this).slideUp(500);"></div>
       <nav>
-        <ul class="nav pull-left">
-            <li>
-              <div class="input-append" style="margin-left: 100px;">
-                <input class="span5" id="search-input" type="text" onkeyup="show_suggestions();">
-                <button class="btn" type="button">Zoeken</button>
-              </div>
-              <div id="search-result" style="display: none;" onclick="$(this).slideUp(500);"></div>
+        <ul class="nav pull span9" style="display: table;">
+            <li style="width: 100%;">
+              <%= render 'layouts/header_logo' %>
             </li>
         </ul>
 
