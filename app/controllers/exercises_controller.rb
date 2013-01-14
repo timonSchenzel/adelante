@@ -2,14 +2,14 @@ class ExercisesController < ApplicationController
 
   before_filter :signed_in_user
 
-  def index
-    @therapies = Therapy.all
+  #def index
+  #  @therapies = Therapy.all
     #@game.rounds.build
-  end
+  #end
 
-  def show
+  #def show
 
-  end
+  #end
 
   def new
     @exercise = Exercise.new
@@ -39,6 +39,10 @@ class ExercisesController < ApplicationController
 
   def new_question
     @therapy = Therapy.find(params[:id])
+  end
+
+  def new_or_existing_question
+
   end
 
   def position

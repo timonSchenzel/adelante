@@ -25,6 +25,20 @@ body .modal {
   margin: -250px 0 0 -470px;
 }
 
+//Main menu
+ul#main-menu{ color: white; background-color: #008ac3; height: 50px; display: inline-table; margin-bottom: 15px; border: solid 2px #ffffff; border-radius: 4px; }
+ul#main-menu li a { background-size: 30px; background-repeat: no-repeat; background-position: center; }
+ul#main-menu li a { color: white; padding: 15px 50px; }
+ul#main-menu li:hover a { color: #000000; background-color: #002d4a; }
+ul#main-menu li.active a { color: #000000; background-color: #002d4a; }
+
+//Main menu icons
+.home-icon { background-image: url("home-icon.png"); }
+.clients-icon { background-image: url("clients-icon.png"); }
+.therapies-icon { background-image: url("therapies-icon.png"); background-size: 20px !important; }
+.agenda-icon { background-image: url("agenda-icon.png"); }
+.colleagues-icon { background-image: url("colleagues-icon.png"); margin-right: 0 !important; }
+
 .result-header { background: url("table-header-mask.png") repeat; height: 40px; text-align: center; color: #000000; line-height: 40px; background-size: 120px; }
   .result-header span { color: #000000; }
 
@@ -51,10 +65,6 @@ ul.thumbnails li.span3:nth-child(4n+1) { margin-left: 0; }
 .my-well { background-color: #D8D8D8; }
 
 .logo_container { font-family: Calibri; }
-
-ul#main-menu li a { color: white; }
-ul#main-menu li:hover a { color: #000000; }
-ul#main-menu li.active a { color: #000000; }
 
 .search-btn { padding: 3px 10px; }
 .search-form { margin-left: 5px; }
