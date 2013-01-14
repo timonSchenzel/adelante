@@ -22,6 +22,8 @@ Adelante::Application.routes.draw do
   match '/exercises/new_question/(:id)', to: 'exercises#new_question', via: :get, as: :new_exercise_question
   match '/exercises/position/(:id)', to: 'exercises#position', via: :get, as: :exercise_position
 
+  match '/exercises/update_order', to: 'exercises#update_order', via: :post
+
   match '/home',  to: 'home#home'
   #match '/clients',  to: 'client#index'
   #match '/client/:id',  to: 'client#show'

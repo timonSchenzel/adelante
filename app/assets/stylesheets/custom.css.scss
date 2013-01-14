@@ -15,6 +15,7 @@ body {
   background: url(image_path('background.jpg')) center center fixed;
   background-size: 100% auto;
   font-family: Calibri;
+  color: #ffffff;
 }
 
 body .modal {
@@ -24,6 +25,20 @@ body .modal {
   margin: -250px 0 0 -470px;
 }
 
+.result-header { background: url("table-header-mask.png") repeat; height: 40px; text-align: center; color: #000000; line-height: 40px; background-size: 120px; }
+  .result-header span { color: #000000; }
+
+.my-table tr:nth-child(odd) { background-color: #3d2f38; }
+.my-table tr:nth-child(even) { background-color: #674e5e; }
+  .my-table tr:nth-child(odd):focus { background-color: #2a1f26 !important; }
+  .my-table tr:nth-child(even):focus { background-color: #2a1f26 !important; }
+
+.my-table tbody tr:hover td, .my-table tbody tr:hover th { background-color: #2a1f26 !important; }
+
+.my-table thead tr { background-color: #715367 !important; }
+
+.page-container { background-color: #401713; }
+
 .placeholder { color: #aaa !important; }
 ::-webkit-input-placeholder { color: #aaa !important; }
 .tagsinput { cursor: default !important; }
@@ -32,7 +47,7 @@ input.knob { cursor: default; }
 div.knob { display: table !important; margin: 0 auto; }
 ul.thumbnails li.span3:nth-child(4n+1) { margin-left: 0; }
 
-.well { color: #333; }
+.well {  }
 .my-well { background-color: #D8D8D8; }
 
 .logo_container { font-family: Calibri; }

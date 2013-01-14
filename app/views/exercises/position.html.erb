@@ -1,0 +1,8 @@
+<h2>Bepaal de volgorde van de oefeningen</h2>
+
+<ul class="nav nav-tabs nav-stacked sortable" data-therapy="<%= @therapy.id %>" data-table="therapies_exercises">
+  <% @therapy.exercises.each do |exercise| %>
+    <li id="exercise-<%= exercise.id %>"><a><%= exercise.name %></a></li>
+  <% end %>
+</ul>
+<a href="<%= therapy_path(id: params[:id]) %>" class="btn btn-block" style="width: 100%; margin-top: 10px;">Volgorde opslaan</a>

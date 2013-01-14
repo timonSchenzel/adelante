@@ -1,14 +1,14 @@
 <%=  %>
 <div class="tabbable"> <!-- Only required for left/right tabs -->
   <ul class="nav nav-tabs" id="main-menu">
-    <li class="<%= active_menu_check('home') %>"><a href="home">Home</a></li>
-    <li class="<%= active_menu_check('agenda') %>"><a href="agenda">Agenda</a></li>
-    <li class="<%= active_menu_check('clients') %>"><a href="client">Cliënten</a></li>
-    <li class="<%= active_menu_check('therapies') %>"><a href="therapies">Therapieën</a></li>
-    <li class="<%= active_menu_check('colleagues') %>"><a href="colleague">Collega's</a></li>
+    <li class="<%= active_menu_check('home') %>"><a href="<%= site_url 'home' %>">Home</a></li>
+    <li class="<%= active_menu_check('agenda') %>"><a href="<%= site_url 'agenda' %>">Agenda</a></li>
+    <li class="<%= active_menu_check('clients') %>"><a href="<%= site_url 'client' %>">Cliënten</a></li>
+    <li class="<%= active_menu_check('therapies') %>"><a href="<%= site_url 'therapies' %>">Therapieën</a></li>
+    <li class="<%= active_menu_check('colleagues') %>"><a href="<%= site_url 'colleague' %>">Collega's</a></li>
   </ul>
 
-  <div class="page-header well">
+  <div class="page-container well">
     <%= yield %>
   </div>
 </div>

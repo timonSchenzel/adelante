@@ -15,6 +15,7 @@ class TherapiesController < ApplicationController
 
   def show
     @therapy = Therapy.find(params[:id])
+    @ajax = request.xhr?
 
     if request.xhr?
       render layout: false

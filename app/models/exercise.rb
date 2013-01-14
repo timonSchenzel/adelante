@@ -11,6 +11,5 @@ class Exercise < ActiveRecord::Base
   has_many :clientsessions_exercises
   has_many :clientsessions, :through => :clientsessions_exercises
 
-
   accepts_nested_attributes_for :exercise_files
 end

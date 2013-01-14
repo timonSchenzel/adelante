@@ -8,7 +8,7 @@ class TherapiesExercisesController < ApplicationController
       ids = params[:added_exercises]
 
       ids.each do |exercise_id|
-        TherapiesExercise.create(therapy_id: params[:therapy_id], exercise_id: exercise_id);
+        TherapiesExercise.create(therapy_id: params[:therapy_id], exercise_id: exercise_id)
       end
     end
     redirect_to new_exercise_question_path(id: params[:therapy_id])

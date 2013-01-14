@@ -9,4 +9,8 @@ module ApplicationHelper
   def active_menu_check(menu_name)
     return (params[:controller] == menu_name) ? 'active' : ''
   end
+
+  def site_url(additional_url)
+    root_url + additional_url
+  end
 end

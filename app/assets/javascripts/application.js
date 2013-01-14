@@ -18,6 +18,16 @@
 
 $(document).ready(function(){
 
+    //Sortable function..
+    $(function() {
+        $("ul.sortable").sortable({ opacity: 0.6, cursor: 'move', tolerance: 'pointer', axis: 'y', helper: 'clone',  update: function() {
+            var order = $(this).sortable("serialize") + '&action=updateRecordsListings&table=' + $(this).data('table') + '&therapy_id=' + $(this).data('therapy');
+            $.post(site_url('exercises/update_order'), order, function(theResponse){
+                //$("#contentRight").html(theResponse);
+            });
+        }});
+    });
+
     $("input[data-suggestions='true']").keyup(function(){
         $.getJSON(site_url($(this).data('action') + '?term=' + $(this).val()), function(data) {
             $('#exisiting-exercises-container').html('');
@@ -25,6 +35,10 @@ $(document).ready(function(){
                 $('#exisiting-exercises-container').append(new Option(element.name, element.id));
             });
         });
+    });
+
+    $('[title]').tooltip({
+        placement: 'top'
     });
 
     $('input[placeholder]').tooltip({

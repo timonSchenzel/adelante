@@ -88,31 +88,82 @@
 </script>
 
 <% up = rand(1..25); down = rand(1..15); total = up + down; %>
+<div class="tabbable">
+<% if @ajax %>
 <div class="modal-header">
-  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
   <h3><%= @therapy.name %></h3>
 </div>
-<div class="modal-body">
-  <div class="span2 well well-small" style="margin: 5px;">
+<% end %>
+
+<div class="modal-body" <% if !@ajax %> style="overflow-y: visible; !important" <% end %>>
+  <div class="span2" style="margin: 5px;">
     <input class="knob" data-width="150" data-height="150" data-fgColor="chartreuse" data-thickness=".4" data-max="<%= total %>" data-readOnly=true data-value="<%= up %>" value="<%= total %>">
   </div>
-  <div class="span9 well well-small" style="margin: 5px;">
-  <h3>Omschrijving</h3>
+  <div class="span4" style="margin: 5px;">
+    <h3>Omschrijving</h3>
     <p style="height: 130px; overflow-y: auto;"><%= @therapy.description %></p>
   </div>
-  <div class="span11 well well-small" style="margin: 5px;">
-    <h3>Oefeningen</h3>
-    <ol>
-      <% @therapy.exercises.each do |exercise| %>
-          <li><%= exercise.name %></li>
-      <% end %>
-    </ol>
+  <div class="span3" style="margin: 5px;">
+    <h3>Geschikt gevonden</h3>
+    <div class="label label-inverse" style="display: table; width: 120px; padding: 10px; background-color: #000000; margin-top: 10px;">
+        <div class="" style="text-align: center; color: #3cff00; font-size: 3em; width: 49%; display: table; float: left; border-right: solid 1px #ffffff;">22</div>
+        <div class="" style="text-align: center; color: #b50000; font-size: 3em; width: 49%; display: table; float: right;">9</div>
+    </div>
   </div>
-  <div class="span11 well well-small" style="margin: 5px;">
-    <h3>Waarderingen</h3>
+  <div class="span2" style="width: 160px;">
+    <div style="width: 48%; float: left; margin: 2px;"><a href="<%= create_saved_therapies_path(@therapy.id) %>" title="Opslaan in favorieten"><%= image_tag('favorite-btn.png') %></a></div>
+    <div style="width: 47%; float: left; margin: 2px;"><a title="Delen"><%= image_tag('share-btn.png') %></a></div>
+    <div style="width: 98%; margin: 2px;"><a title="Download de script bestanden"><%= image_tag('download-btn.png') %></a></div>
+  </div>
+  <div class="span11" style="margin: 5px;">
+    <div class="result-header">
+        <span>Resultaten oefeningen</span>
+    </div>
+    <table class="table my-table">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Code</th>
+        <th>Oefening</th>
+        <th>Niveau cliënt</th>
+        <th>Therapeut</th>
+        <th colspan="2">Score</th>
+        <th>Best voorgande oefening</th>
+        <th>Minst voorgande oefening</th>
+        <th>Commentaar</th>
+      </tr>
+      </thead>
+      <tbody>
+          <% @therapy.exercises.each do |exercise| %>
+              <tr>
+                <td>Pos.</td>
+                <td><%= exercise.code %></td>
+                <td><%= exercise.name %></td>
+                <td>Beginner</td>
+                <td>Naam therapeut</td>
+                <td>Up</td>
+                <td>Down</td>
+                <td>Oef. R</td>
+                <td>Oef. F</td>
+                <td><a href="javascript:;" onclick="$('tr#comment-<%= exercise.id %>').toggle('fast');"><span class="label label-info">Tonen (4)</span></a></td>
+              </tr>
+              <tr id="comment-<%= exercise.id %>" style="display: none;">
+                <td colspan="10">
+                  Comentaar regel
+                </td>
+              </tr>
+          <% end %>
+      </tbody>
+    </table>
+  </div>
 
-  </div>
 </div>
-<div class="modal-footer">
-  <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-</div>
+  <% if @ajax %>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    </div>
+<% end %>
+    </div>

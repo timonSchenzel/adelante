@@ -18,7 +18,7 @@ class ExercisesController < ApplicationController
 
   def create
     @therapy = Therapy.find(params[:therapy_id])
-    params[:exercise][:position] = @therapy.exercises.count + 1
+    #params[:exercise][:position] = @therapy.exercises.count + 1
     new_exercise = @therapy.exercises.create(params[:exercise])
 
     #params[:tags].split(',').each do |value|
@@ -39,6 +39,27 @@ class ExercisesController < ApplicationController
 
   def new_question
     @therapy = Therapy.find(params[:id])
+  end
+
+  def position
+    @therapy = Therapy.find(params[:id])
+    #@exercises_by_order = @therapy.exercises.all(order: :position)
+  end
+
+  def update_order
+    counter = 0
+    params[:exercise].each do |exercise|
+      @exercise_id = exercise.to_i
+      counter = counter + 1
+      update_exercise = TherapiesExercise.find_by_therapy_id_and_exercise_id(params[:therapy_id], @exercise_id)
+
+      p "--------------"
+      p update_exercise
+      p "--------------"
+
+      update_exercise.position = counter
+      update_exercise.save
+    end
   end
 
   def existing_suggestions
