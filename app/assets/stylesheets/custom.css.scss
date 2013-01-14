@@ -25,6 +25,14 @@ body .modal {
   margin: -250px 0 0 -470px;
 }
 
+.home-icon-big { background-image: url("home-icon.png"); }
+.clients-icon-big { background-image: url("clients-icon.png"); }
+.therapies-icon-big { background-image: url("therapies-icon.png"); background-size: 60px !important; }
+.agenda-icon-big { background-image: url("agenda-icon.png"); }
+.colleagues-icon-big { background-image: url("colleagues-icon.png");  background-size: 90px !important; }
+
+.btn-big { color: #ffffff; font-size: 2em; line-height: 250px; width: 47%; margin: 10px 20px; float: left; background-color: #0e0609; border: solid 2px #ffffff; border-radius: 4px; height: 150px; background-size: 100px; background-repeat: no-repeat; background-position: 50% 20px; display: table-cell; text-align: center; vertical-align: bottom; }
+
 //Main menu
 ul#main-menu{ color: white; background-color: #008ac3; height: 50px; display: inline-table; margin-bottom: 15px; border: solid 2px #ffffff; border-radius: 4px; }
 ul#main-menu li a { background-size: 30px; background-repeat: no-repeat; background-position: center; }
