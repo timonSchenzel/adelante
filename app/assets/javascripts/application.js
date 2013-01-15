@@ -200,7 +200,7 @@ function site_url(addition_url) {
         addition_url = addition_url.substring(1);
     }
 
-    return 'http://localhost:3000/' + addition_url;
+    return 'http://infinite-headland-6783.herokuapp.com/' + addition_url;
 }
 
 jQuery (function ($)
