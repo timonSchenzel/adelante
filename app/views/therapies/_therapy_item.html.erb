@@ -1,4 +1,4 @@
-<% up = rand(1..25); down = rand(1..15); total = up + down; %>
+<% up = (1..25).to_a.sample; down = (1..15).to_a.sample; total = up + down; %>
 <li class="span3">
   <% if(@current_user.has_therapy_saved(therapy.id)) %>
     <a class="" href="<%= delete_saved_therapies_path(therapy.id) %>" style="position: absolute;"><i class="icon-star-empty icon-large"></i></a>
