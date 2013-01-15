@@ -87,7 +87,7 @@
     });
 </script>
 
-<% up = rand(1..25); down = rand(1..15); total = up + down; %>
+<% up = (1..25).to_a.sample; down = (1..15).to_a.sample; total = up + down;  %>
 <div class="tabbable">
 <% if @ajax %>
 <div class="modal-header">
