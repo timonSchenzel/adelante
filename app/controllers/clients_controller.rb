@@ -22,4 +22,12 @@ class ClientsController < ApplicationController
     @clientSessions = @client.clientsessions
   end
 
+  def new_session
+    @clientsession = Clientsession.new
+    @clientsession.therapies.build
+    @clientsession.exercises.build
+    @clientsession.ratings.build
+    #@clientherapy = @clientsession.therapies.new
+  end
+
 end

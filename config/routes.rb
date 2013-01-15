@@ -4,6 +4,9 @@ Adelante::Application.routes.draw do
   match '/therapies/autocomplete', to: 'therapies#autocomplete', via: :get
   match '/search/suggestions', to: 'search#suggestions', via: :get
   match '/exercises/existing_suggestions', to: 'exercises#existing_suggestions', via: :get, as: :show_existing_suggestions
+  match '/therapies/show_suggestions', to: 'therapies#show_suggestions', via: :get, as: :show_therapy_suggestions
+  match 'clients/new_session', to: 'clients#new_session'
+
 
   resources :sessions, only: [:new, :create, :destroy]
   resources :clientsessions, only: [:new, :create, :destroy]
@@ -12,7 +15,15 @@ Adelante::Application.routes.draw do
   resources :therapies
   resources :exercises
   resources :agenda
-  resources :clients
+  resources :clients do
+    resources :clientsessions, only: [:index] do
+      resources :therapies, only: [:index] do
+        resources :exercises, only: [:index]
+      end
+
+    end
+  end
+
   resources :colleagues
 
   match '/saved_therapies/create/(:id)', to: 'saved_therapies#create', via: :get, as: :create_saved_therapies

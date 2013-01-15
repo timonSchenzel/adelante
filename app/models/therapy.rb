@@ -12,7 +12,15 @@ class Therapy < ActiveRecord::Base
 
   has_many :saved_therapies
 
-  accepts_nested_attributes_for :exercises
+  accepts_nested_attributes_for :exercises, :clientsessions
 
   scope :recent_limit, :order => :updated_at, :limit => "8"
+
+  def find_exercises_session(id)
+    self.exercises.find_by_sql("
+      SELECT E.* FROM exercises AS E 
+        JOIN clientsessions_exercises AS CSE ON CSE.exercise_id=E.id
+      WHERE CSE.clientsession_id = #{id}");
+
+  end
 end

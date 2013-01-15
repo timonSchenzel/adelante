@@ -48,4 +48,13 @@ class TherapiesController < ApplicationController
     render :json => tag_array
   end
 
+  def show_suggestions
+    therapies = Therapy.where("name like ?", "%#{params[:term]}%").limit(20)
+    therapies_array = Array.new
+    therapies.each do |therapy|
+      therapies_array.push({ id: therapy.id, name: therapy.name })
+    end
+    render :json => therapies_array
+  end
+
 end

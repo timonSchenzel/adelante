@@ -1,5 +1,6 @@
 <div class="well row pull-right">
-  <input type="submit" class="btn btn-primary" value="Nieuwe sessie"k>
+  <input type="submit" class="btn btn-primary" value="Nieuwe sessie">
+  <input type="submit" class="btn" value="Bewerken">
 </div>
 
 <div class="row">
@@ -14,7 +15,7 @@
 
 <div class="row">
   <div class="span11">
-    <table class="table table-striped">
+    <table class="table my-table">
       <thead>
           <th>Sessie datum</th>
           <th>Therapie</th>
@@ -28,21 +29,27 @@
           <th>Naam therapeut</th>
       </thead>
       <tbody>
-      <tr>
+
         <% @clientSessions.each do |clientSession|  %>
-           <td> <%= clientSession.date  %> </td>
-            <td> <%= clientSession.notes  %> </td>
-            <td> :: <%= clientSession.exercises  %> </td>
-
-            <% clientSession.exercises.each do |exercise| %>
-               <%=  exercise.name %>
-               <%=  exercise.therapies %>
+          <% clientSession.exercises.each do |exercise| %>
+          <tr>
+            <td><%= clientSession.date %>
+            <td><%= exercise.name %></td>
+            <% exercise.find_therapy_session(clientSession.id,exercise.id).each do |exercise| %>
+              <td><%= exercise.name %></td>
             <% end %>
-
-
+            <% exercise.sessionrating(clientSession.id,exercise.id).each do |sessionrating| %>
+            <td><%=sessionrating.score%></td>            
+            <td><%=sessionrating.previous_exercise%></td>            
+            <td><%=sessionrating.connects%></td>            
+            <td><%=sessionrating.client_level%></td>          
+            <td><%=sessionrating.progress_c%></td>            
+            <td><%=sessionrating.progress_t%></td>  
+            <% end %>
+            <td></td>
+          </tr>
+          <% end %>
         <% end  %>
-
-      </tr>
       </tbody>
     </table>
   </div>

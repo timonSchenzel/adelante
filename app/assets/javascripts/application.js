@@ -55,6 +55,17 @@ $(document).ready(function(){
         });
     });
 
+    $("input[data-suggesttherapy='true']").keyup(function(){
+        $.getJSON(site_url($(this).data('action') + '?term=' + $(this).val()), function(data) {
+            $('#suggest-therapy-container').html('');
+            $.each(data, function(index, element){
+                $('#suggest-therapy-container').append(new Option(element.name, element.id));
+            });
+        });
+    });
+
+    $("input.date_picker").datepicker();
+
     $('[title]').tooltip({
         placement: 'top'
     });
