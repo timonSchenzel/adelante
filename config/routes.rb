@@ -5,6 +5,7 @@ Adelante::Application.routes.draw do
   match '/search/suggestions', to: 'search#suggestions', via: :get
   match '/exercises/existing_suggestions', to: 'exercises#existing_suggestions', via: :get, as: :show_existing_suggestions
 
+  resources :sessions, only: [:new, :create, :destroy]
   resources :clientsessions, only: [:new, :create, :destroy]
   resources :therapies_exercises, only: [:new, :create, :destroy]
   resources :therapists
