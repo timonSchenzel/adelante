@@ -1,5 +1,5 @@
 Adelante::Application.routes.draw do
-  root to: 'therapies#index'
+  root to: 'home#home'
 
   match '/therapies/autocomplete', to: 'therapies#autocomplete', via: :get
   match '/search/suggestions', to: 'search#suggestions', via: :get
