@@ -12,8 +12,11 @@ class Clientsession < ActiveRecord::Base
 
   has_many :clientsessions_ratings
   has_many :ratings, :through => :clientsessions_ratings
-  accepts_nested_attributes_for :therapies, :exercises, :ratings
-  def rating(id)
-  	
+
+  accepts_nested_attributes_for :therapies, :exercises, :ratings, :clientsessions_ratings
+  
+  def therapist_name(id)
+  	Clientsession.find_by_sql("SELECT name FROM therapists WHERE id = #{id}");
   end
+
 end

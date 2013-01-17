@@ -5,11 +5,11 @@ Adelante::Application.routes.draw do
   match '/search/suggestions', to: 'search#suggestions', via: :get
   match '/exercises/existing_suggestions', to: 'exercises#existing_suggestions', via: :get, as: :show_existing_suggestions
   match '/therapies/show_suggestions', to: 'therapies#show_suggestions', via: :get, as: :show_therapy_suggestions
-  match 'clients/new_session', to: 'clients#new_session'
+  match 'clients/new_session/(:id)', to: 'clients#new_session', as: :create_new_session
 
 
   resources :sessions, only: [:new, :create, :destroy]
-  resources :clientsessions, only: [:new, :create, :destroy]
+  resources :clientsessions, only: [:new, :create, :destroy,:edit,:update]
   resources :therapies_exercises, only: [:new, :create, :destroy]
   resources :therapists
   resources :therapies

@@ -27,7 +27,7 @@ class Exercise < ActiveRecord::Base
       SELECT R.* FROM ratings AS R 
         JOIN clientsessions_ratings AS CSR ON CSR.rating_id=R.id
       WHERE CSR.clientsession_id = #{id}
-      AND CSR.exercise_id = #{exercise_id}");
+      AND R.exercise_id = #{exercise_id}");
   	end
 
 end

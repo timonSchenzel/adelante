@@ -67,12 +67,21 @@ class ExercisesController < ApplicationController
   end
 
   def existing_suggestions
-    exercises = Exercise.where("name like ?", "%#{params[:term]}%").limit(30)
-    exercises_array = Array.new
-    exercises.each do |exercise|
-      exercises_array.push({ id: exercise.id, name: exercise.name })
-    end
-    render :json => exercises_array
+      exercises_array = Array.new
+
+      if(params.has_key?(:therapy) == true)
+       exercises = Therapy.find("#{params[:therapy]}").exercises;
+
+       exercises.each do |exercise|
+          exercises_array.push({ id: exercise.id, name: exercise.name })
+       end
+      else
+       exercises = Exercise.where("name like ?", "%#{params[:term]}%").limit(30)
+       exercises.each do |exercise|
+          exercises_array.push({ id: exercise.id, name: exercise.name })
+        end
+      end
+        render :json => exercises_array
   end
 
   def autocomplete

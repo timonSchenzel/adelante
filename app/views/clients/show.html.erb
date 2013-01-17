@@ -1,6 +1,5 @@
 <div class="well row pull-right">
-  <input type="submit" class="btn btn-primary" value="Nieuwe sessie">
-  <input type="submit" class="btn" value="Bewerken">
+  <%= link_to "Nieuwe sessie",create_new_session_path(@client.id), :class => "btn btn-primary" %>
 </div>
 
 <div class="row">
@@ -8,36 +7,42 @@
   <div class="span8 pull-right">
     <h1><%= @client.name %></h1>
     <p>
-      <%= @client.dossier.description %>
+      <%= if(@client.dossier.respond_to?("description"))
+                    @client.dossier.description
+          end
+      %>
     </p>
   </div>
 </div>
 
 <div class="row">
   <div class="span11">
-    <table class="table my-table">
+        <% @clientSessions.each do |clientSession|  %>
+        <table class="table my-table">
+
       <thead>
-          <th>Sessie datum</th>
-          <th>Therapie</th>
-          <th>Oefening</th>
-          <th>Score</th>
-          <th>Vorige oef.</th>
-          <th>Sluit aan</th>
-          <th>Niveau</th>
-          <th>VVC</th>
-          <th>VVT</th>
-          <th>Naam therapeut</th>
+        <th colspan="8"><%= clientSession.date.to_s(:short) %></th>
+        <th colspan="2"><%= link_to "Bewerken", [:edit, clientSession], :class => "btn btn-primary pull-right" %></td>
       </thead>
       <tbody>
+        <tr>
+          <td>Therapie</td>
+          <td>Oefening</td>
+          <td>Score</td>
+          <td>Vorige oef.</td>
+          <td>Sluit aan</td>
+          <td>Niveau</td>
+          <td>VVC</td>
+          <td>VVT</td>
+          <td>Naam therapeut</td>
+        </tr>
 
-        <% @clientSessions.each do |clientSession|  %>
           <% clientSession.exercises.each do |exercise| %>
           <tr>
-            <td><%= clientSession.date %>
-            <td><%= exercise.name %></td>
-            <% exercise.find_therapy_session(clientSession.id,exercise.id).each do |exercise| %>
-              <td><%= exercise.name %></td>
+            <% exercise.find_therapy_session(clientSession.id,exercise.id).each do |therapy| %>
+              <td><%= therapy.name %></td>
             <% end %>
+            <td><%= exercise.name %></td>
             <% exercise.sessionrating(clientSession.id,exercise.id).each do |sessionrating| %>
             <td><%=sessionrating.score%></td>            
             <td><%=sessionrating.previous_exercise%></td>            
@@ -46,11 +51,12 @@
             <td><%=sessionrating.progress_c%></td>            
             <td><%=sessionrating.progress_t%></td>  
             <% end %>
-            <td></td>
+            <td><%=clientSession.therapist_name(clientSession.therapist_id).first.name %></td>
           </tr>
           <% end %>
-        <% end  %>
       </tbody>
     </table>
+        <% end  %>
+
   </div>
 </div>

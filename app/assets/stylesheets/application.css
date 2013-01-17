@@ -11,3 +11,27 @@
  *= require_self
  *= require_tree .
  */
+
+#thumbs_checkbox {
+    display:none;
+}
+
+#thumbs_checkbox + label{
+    background:url('http://www.heiloo-online.nl/forum/extensions/pun_karma/icons/thumbs_down.gif') no-repeat;
+    height: 16px;
+    width: 16px;
+    display:inline-block;
+    padding: 0 0 0 0px;
+}
+
+#thumbs_checkbox:checked + label{
+    background:url('http://www.heiloo-online.nl/forum/extensions/pun_karma/icons/thumbs_up.gif') no-repeat;
+    height: 16px;
+    width: 16px;
+    display:inline-block;
+    padding: 0 0 0 0px;
+}
+
+.tabs-left > .nav-tabs {
+    width: 150px;
+}

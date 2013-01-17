@@ -64,7 +64,11 @@ $(document).ready(function(){
         });
     });
 
-    $("input.date_picker").datepicker();
+
+
+    $("input.date_picker").datepicker({
+    dateFormat: "yy-mm-dd"
+  });
 
     $('[title]').tooltip({
         placement: 'top'
@@ -211,7 +215,11 @@ function site_url(addition_url) {
         addition_url = addition_url.substring(1);
     }
 
-    return 'http://infinite-headland-6783.herokuapp.com/' + addition_url;
+    return 'http://localhost:3000/' + addition_url;
+}
+
+function loadExercises(){
+
 }
 
 jQuery (function ($)
@@ -240,3 +248,21 @@ jQuery (function ($)
         }
     });
 });
+
+$(document).ready(function() {
+    $("#suggest-therapy-container").change(function() {
+        $.getJSON('http://localhost:3000/exercises/existing_suggestions?therapy='+$(this).val(), function(data) {
+            $('#exisiting-exercises-container').html('');
+                $.each(data, function(index, element){
+                    $('#exisiting-exercises-container').append(new Option(element.name, element.id));
+                });
+
+        });
+    });
+});
+
+function setCheckbox(){
+    $(document).ready(function(){
+        $(".selectlistbox").dropdownchecklist(); 
+    });
+}
