@@ -1,0 +1,60 @@
+<table class="table my-table">
+<thead>
+<th>Therapie</th>	
+<th>Oefening</th>
+<th>Niveau cliënt</th>
+<th>Score</th>
+<th>Vorige oefening</th>
+<th>Sluit aan</th>
+<th>BVT</th>
+<th>BVC</th>
+<th>Behandelende therapeut</th>
+<th></th>
+</thead>
+
+<tbody>
+	<tr>
+<%= simple_form_for(@clientSession) do |f| %>
+<%=f.hidden_field :client_id %>
+<%= f.simple_fields_for(:therapies) do |tf| %>
+<td><%= tf.input :name,:label => false, :disabled => true, :input_html => {placeholder: 'Selecteer de therapie',title: 'Therapie selecteren',class:'placeholder'} %> </td>
+<% end %>
+
+<%= f.simple_fields_for(:exercises) do |tf| %>
+<td><%= tf.input :name,:label => false,:disabled => true, :input_html => {placeholder: 'Selecteer de therapie',title: 'Therapie selecteren',class:'placeholder'} %> </td>
+<% end %>
+
+<%= f.simple_fields_for(:ratings) do |tf| %>
+<td style="width:100px;">
+	<%=tf.input :client_level,
+	:label => false,
+	:collection => [:beginner,:gevorderde,:expert], 
+	:input_html => {placeholder: '',title: '',class:'placeholder'} %>
+</td>
+
+<td>
+	<%=tf.input :score, :label => "&nbsp;", :input_html => {title: 'Therapie selecteren', id:'thumbs_checkbox'} %>
+</td>
+
+<td>
+	<%=tf.input :previous_exercise,:label => false, :input_html => {placeholder: 'Selecteer de therapie',title: 'Therapie selecteren',class:'placeholder'} %> 
+</td>
+<td>
+	<%=tf.input :connects,:label => false, :input_html => {placeholder: 'Selecteer de therapie',title: 'Therapie selecteren',class:'placeholder'} %>
+</td>
+<td style="width:100px;">
+	<%=tf.input :progress_t,:label => false,:collection => [:matig,:redelijk,:goed,:uitstekend], :input_html => {placeholder: 'Selecteer de therapie',title: 'Therapie selecteren',class:'placeholder'} %>
+</td>
+<td style="width:100px;">
+	<%=tf.input :progress_c,:label => false,:collection => [:matig,:redelijk,:goed,:uitstekend], :input_html => {placeholder: 'Selecteer de therapie',title: 'Therapie selecteren',class:'placeholder'} %>
+</td>
+<td>
+	<%= @therapist.name %>
+</td>
+<% end %>
+<td><%= f.submit "Bewerken" , :class => "submit" %></td>
+<% end %>
+</tr>
+</tbody>
+
+</table>

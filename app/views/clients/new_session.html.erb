@@ -1,0 +1,47 @@
+<h1>Nieuwe sessie toevoegen</h1>
+<table class="table my-table">
+  <thead>
+  <th>Datum</th>
+  <th>Naam therapie</th>
+  <th>Oefening</th>
+  <th></th>
+  <th></th>
+  </thead>
+  <tbody>
+  <tr>
+<%= simple_form_for(@clientsession) do |f| %>
+<input type="hidden" name="client_id" value="<%=params[:id]%>">
+ <td><%= f.input :date,:as => :string, label: false, :input_html => { placeholder: 'Datum', title: 'Datum van deze therapie?', class: 'date_picker input-small' } %></td>
+
+    <%= f.simple_fields_for(:therapies) do |tf| %>
+       <td> <!-- <%= tf.input :name, :input_html => {placeholder: 'Selecteer de therapie',title: 'Therapie selecteren',class:'placeholder'} %> -->
+            <div class="thumbnail" style="float: left; margin: 0 5px;">
+              <input type="text" style="width: 100%;" placeholder="Zoek naar therapieën.." id="search-therapies"  data-suggesttherapy="true" data-action="<%= show_therapy_suggestions_path() %>">
+              <div style="height: 400px; background-color: #ffffff;">
+                <select name="selected_therapy" id='suggest-therapy-container' size="24" onclick="loadExercises()"></select>
+              </div>
+            </div>
+       </td>
+
+    <% end %>
+
+    <%= f.simple_fields_for(:exercises) do |ef| %>
+            <td>
+              <div class="thumbnail" style="float: left; margin: 0 5px;">
+                
+                <div style="height: 400px; background-color: #ffffff;">
+                  <select multiple class="selectlistbox" name="selected_exercise[]" id='exisiting-exercises-container' size="24"></select>
+                </div>
+              </div>
+            </td>
+    <% end %>
+
+    <%= f.simple_fields_for(:ratings) do |rf| %>
+       <td> <!-- <%=  rf.input :id, label: false, :input_html => {placeholder: 'blalsd',title: 'Titel',class:'placeholder'} %> --></td>
+    <% end %>
+ <td><%= f.submit "Sessie aanmaken" , :class => "submit" %></td>
+<% end %>
+  </tr>
+  </tbody>
+
+</table>
