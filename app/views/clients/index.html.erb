@@ -1,4 +1,4 @@
-<div class="tabbable"> <!-- Only required for left/right tabs -->
+<div class="tabbable tabs-left"> <!-- Only required for left/right tabs -->
   <ul class="nav nav-tabs">
     <li class="active"><a href="#tab1" data-toggle="tab">Mijn cliënten</a></li>
     <li><a href="#tab2" data-toggle="tab">Overige cliënten</a></li>
@@ -32,7 +32,7 @@
         <% @other_clients.each do |client| %>
               <div class="span3">
                 <div class="client_info_photo">
-                  <%= link_to image_tag(client.photo, :class => 'circle_photo'),client  %>
+                  <a href="<%= client_path(client.id) %>"><%= image_tag(client.photo, :class => 'circle_photo') %></a>
                 </div>
                 <div class="client_info_name">
                   <%= client.name %>

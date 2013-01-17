@@ -19,7 +19,7 @@ class ClientsController < ApplicationController
 
   def show
     @client = Client.find(params[:id])
-    @clientSessions = @client.clientsessions
+    @clientSessions = @client.clientsessions.order("id DESC")
   end
 
   def new_session
@@ -27,7 +27,10 @@ class ClientsController < ApplicationController
     @clientsession.therapies.build
     @clientsession.exercises.build
     @clientsession.ratings.build
+    @clientsession.ratings.notes.build
     #@clientherapy = @clientsession.therapies.new
   end
+
+  
 
 end
