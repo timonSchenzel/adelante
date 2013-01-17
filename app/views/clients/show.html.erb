@@ -47,15 +47,7 @@
             <td><%=sessionrating.connects%></td>            
             <td><%=sessionrating.client_level%></td>          
             <td><%=sessionrating.progress_c%></td>            
-            <td><%=sessionrating.progress_t%></td>
-            <tr>
-              <td>
-                  <% if(sessionrating.notes.first.respond_to?("description")) %>
-                      <%= sessionrating.notes.first %>
-                  <% end %>
-                   <%= sessionrating.notes.first %>
-              </td>
-            </tr>  
+            <td><%=sessionrating.progress_t%></td>  
             <% end %>
             <td><%=clientSession.therapist_name(clientSession.therapist_id).first.name %></td>
           </tr>
