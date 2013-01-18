@@ -1,9 +1,16 @@
-<<<<<<< HEAD
 <h1> Sessie resultaten bewerken </h1>
+<div class="well row pull-right" style="color: black;">
+  <% if( @clientSession.exercises.first.exercise_files.first.nil?) %>
+      <div>Geen script beschikbaar</div>
+  <% else %>
+      Download script <div style="width: 98%; margin: 2px;"><a title="Download het script"><%= link_to image_tag('download-btn.png', { style: 'width: 90px;' }), site_url("scripts/#{ @clientSession.exercises.first.exercise_files.first.attachment_file_name}") %></a></div>
+  <% end %>
+</div>
 <div class="well" style="color: black;">
   <h2>Uitvoering van deze oefening</h2>
     <p><%= @clientSession.exercises.first.description %></p>
 </div>
+
 <table class="table my-table">
 <thead>	
 <th>Oefening</th>
