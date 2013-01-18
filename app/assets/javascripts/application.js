@@ -64,8 +64,6 @@ $(document).ready(function(){
         });
     });
 
-
-
     $("input.date_picker").datepicker({
     dateFormat: "yy-mm-dd"
   });
@@ -216,10 +214,7 @@ function site_url(addition_url) {
     }
 
     return 'http://localhost:3000/' + addition_url;
-}
-
-function loadExercises(){
-
+    //return 'http://infinite-headland-6783.herokuapp.com/' + addition_url;
 }
 
 jQuery (function ($)

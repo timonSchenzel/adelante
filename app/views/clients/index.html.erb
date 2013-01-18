@@ -3,32 +3,38 @@
     <li class="active"><a href="#tab1" data-toggle="tab">Mijn cliënten</a></li>
     <li><a href="#tab2" data-toggle="tab">Overige cliënten</a></li>
     <li><a href="#tab3" data-toggle="tab">Details</a></li>
-    <li class="pull-right">
-      <div class="input-append search-form">
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+      <div class="input-append search-form" style="float: right; margin-bottom: 10px; margin-top: -40px;">
         <input class="span3" id="therapy-search" type="text" style="float: left;">
         <div class="btn-group" style="float: left;">
           <a class="btn search-btn" href="#"><i class="icon-search"></i></a>
         </div>
       </div>
-    </li>
-  </ul>
-  <div class="tab-content">
-    <div class="tab-pane active" id="tab1">
-       <div class="row">
-      <% @personal_clients.each do |client| %>
-         <div class="span3">
-           <div class="client_info_photo">
-            <%= link_to image_tag(client.photo, :class => 'circle_photo', ), client   %>
-           </div>
-          <div class="client_info_name">
-           <%= client.name %>
-          </div>
-         </div>
-      <% end %>
+
+       <div class="row" style="display: table; width: 100%; margin-top: 20px;">
+          <% @personal_clients.each do |client| %>
+             <div class="span3" style="margin-left: 0;">
+               <div class="client_info_photo">
+                <%= link_to image_tag(client.photo, :class => 'circle_photo', ), client   %>
+               </div>
+              <div class="client_info_name">
+               <%= client.name %>
+              </div>
+             </div>
+          <% end %>
        </div>
     </div>
     <div class="tab-pane" id="tab2">
-      <p>
+      <div class="input-append search-form" style="float: right; margin-bottom: 10px; margin-top: -40px;">
+        <input class="span3" id="therapy-search" type="text" style="float: left;">
+        <div class="btn-group" style="float: left;">
+          <a class="btn search-btn" href="#"><i class="icon-search"></i></a>
+        </div>
+      </div>
+
+      <div class="row" style="display: table; width: 100%; margin-top: 20px;">
         <% @other_clients.each do |client| %>
               <div class="span3">
                 <div class="client_info_photo">
@@ -39,7 +45,7 @@
                 </div>
               </div>
         <% end %>
-      </p>
+      </div>
     </div>
     <div class="tab-pane" id="tab3">
 

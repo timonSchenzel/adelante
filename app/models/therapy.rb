@@ -12,6 +12,8 @@ class Therapy < ActiveRecord::Base
 
   has_many :saved_therapies
 
+  has_many :colleagues_shares
+
   accepts_nested_attributes_for :exercises, :clientsessions
 
   scope :recent_limit, :order => :updated_at, :limit => "8"

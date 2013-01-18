@@ -34,6 +34,7 @@
           <td>VVC</td>
           <td>VVT</td>
           <td>Naam therapeut</td>
+          <th>Commentaar</th>
         </tr>
 
           <% clientSession.exercises.each do |exercise| %>
@@ -47,10 +48,20 @@
             <td><%=sessionrating.connects%></td>            
             <td><%=sessionrating.client_level%></td>          
             <td><%=sessionrating.progress_c%></td>            
-            <td><%=sessionrating.progress_t%></td>  
-            <% end %>
+            <td><%=sessionrating.progress_t%></td>
             <td><%=clientSession.therapist_name(clientSession.therapist_id).first.name %></td>
+            <td><a href="javascript:;" onclick="$('tr#comment-<%= exercise.id %>').toggle('fast');"><span class="label label-info">Tonen (<%= exercise.ratings.count %>)</span></a></td>
           </tr>
+          <tr id="comment-<%= exercise.id %>" style="display: none;">
+            <td colspan="11">
+              <% if sessionrating.description.nil? %>
+                  (Geen commentaar)
+              <% else %>
+                  <%= sessionrating.description %>
+              <% end %>
+            </td>
+          </tr>
+            <% end %>
           <% end %>
       </tbody>
     </table>

@@ -27,10 +27,10 @@
 
 	    if (val === (val = input.val())) {return;}
 
-	    // Enter new content into testSubject
+	    // Enter index content into testSubject
 	    var escaped = val.replace(/&/g, '&amp;').replace(/\s/g,' ').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 	    testSubject.html(escaped);
-	    // Calculate new width + whether to change
+	    // Calculate index width + whether to change
 	    var testerWidth = testSubject.width(),
 	        newWidth = (testerWidth + o.comfortZone) >= minWidth ? testerWidth + o.comfortZone : minWidth,
 	        currentWidth = input.width(),
@@ -167,7 +167,7 @@
 		return (jQuery.inArray(val, tagslist) >= 0); //true when tag exists, false when not
 	};
 
-	// clear all existing tags and import new ones from a string
+	// clear all existing tags and import index ones from a string
 	$.fn.importTags = function(str) {
                 id = $(this).attr('id');
 		$('#'+id+'_tagsinput .tag').remove();
@@ -274,7 +274,7 @@
 
 
 				} else {
-						// if a user tabs out of the field, create a new tag
+						// if a user tabs out of the field, create a index tag
 						// this is only available if autocomplete is not used.
 						$(data.fake_input).bind('blur',data,function(event) {
 							var d = $(this).attr('data-default');
@@ -289,7 +289,7 @@
 						});
 
 				}
-				// if user types a comma, create a new tag
+				// if user types a comma, create a index tag
 				$(data.fake_input).bind('keypress',data,function(event) {
 					if (event.which==event.data.delimiter.charCodeAt(0) || event.which==13 ) {
 					    event.preventDefault();

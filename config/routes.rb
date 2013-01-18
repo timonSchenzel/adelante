@@ -16,6 +16,7 @@ Adelante::Application.routes.draw do
     end
   end
   resources :therapies_exercises, only: [:new, :create, :destroy]
+  resources :colleagues_shares
   resources :therapists
   resources :therapies
   resources :exercises
@@ -44,7 +45,7 @@ Adelante::Application.routes.draw do
   match '/home',  to: 'home#home'
   #match '/clients',  to: 'client#index'
   #match '/client/:id',  to: 'client#show'
-  match '/signin',  to: 'sessions#new'
+  match '/signin',  to: 'sessions#index'
   match '/signout', to: 'sessions#destroy', via: :delete
   match '/client/ajax_show/(:id)', to: 'client#ajax_show', via: :get
 

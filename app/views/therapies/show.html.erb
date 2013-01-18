@@ -100,7 +100,7 @@
 
 <div class="modal-body" <% if !@ajax %> style="overflow-y: visible; !important" <% end %>>
   <div class="span2" style="margin: 5px;">
-    <input class="knob" data-width="150" data-height="150" data-fgColor="chartreuse" data-thickness=".4" data-max="<%= total %>" data-readOnly=true data-value="<%= up %>" value="<%= total %>">
+    <input class="knob" data-width="150" data-height="150" data-fgColor="chartreuse" data-thickness=".4" data-max="<%= total+up %>" data-readOnly=true data-value="<%= total %>" value="<%= up %>">
   </div>
   <div class="span4" style="margin: 5px;">
     <h3>Omschrijving</h3>
@@ -109,14 +109,13 @@
   <div class="span3" style="margin: 5px;">
     <h3>Geschikt gevonden</h3>
     <div class="label label-inverse" style="display: table; width: 120px; padding: 10px; background-color: #000000; margin-top: 10px;">
-        <div class="" style="text-align: center; color: #3cff00; font-size: 3em; width: 49%; display: table; float: left; border-right: solid 1px #ffffff;">22</div>
-        <div class="" style="text-align: center; color: #b50000; font-size: 3em; width: 49%; display: table; float: right;">9</div>
+        <div class="" style="text-align: center; color: #3cff00; font-size: 3em; width: 49%; display: table; float: left; border-right: solid 1px #ffffff;"><%= up %></div>
+        <div class="" style="text-align: center; color: #b50000; font-size: 3em; width: 49%; display: table; float: right;"><%= down %></div>
     </div>
   </div>
-  <div class="span2" style="width: 160px;">
+  <div class="span2" style="width: 150px; margin-top: 30px;">
     <div style="width: 47%; float: left; margin: 2px;"><a href="<%= create_saved_therapies_path(@therapy.id) %>" title="Opslaan in favorieten"><%= image_tag('favorite-btn.png') %></a></div>
-    <div style="width: 47%; float: left; margin: 2px;"><a title="Delen"><%= image_tag('share-btn.png') %></a></div>
-    <div style="width: 98%; margin: 2px;"><a title="Download de script bestanden"><%= image_tag('download-btn.png') %></a></div>
+    <div style="width: 47%; float: left; margin: 2px;"><a title="Delen" href="<%= new_colleagues_share_path(id: @therapy.id) %>"><%= image_tag('share-btn.png') %></a></div>
   </div>
   <div class="span11" style="margin: 5px;">
     <div class="result-header">
@@ -129,11 +128,11 @@
         <th>Code</th>
         <th>Oefening</th>
         <th>Niveau cliënt</th>
-        <th>Therapeut</th>
         <th colspan="2">Score</th>
         <th>Best voorgande oefening</th>
         <th>Minst voorgande oefening</th>
         <th>Commentaar</th>
+        <th>Download script</th>
       </tr>
       </thead>
       <tbody>
@@ -143,16 +142,26 @@
                 <td><%= exercise.code %></td>
                 <td><%= exercise.name %></td>
                 <td>Beginner</td>
-                <td>Naam therapeut</td>
-                <td>Up</td>
-                <td>Down</td>
+                <td>Up<br /><%= exercise.ratings.count %></td>
+                <td>Down<br /><%= exercise.ratings.count %></td>
                 <td>Oef. R</td>
                 <td>Oef. F</td>
-                <td><a href="javascript:;" onclick="$('tr#comment-<%= exercise.id %>').toggle('fast');"><span class="label label-info">Tonen (4)</span></a></td>
+                <td><a href="javascript:;" onclick="$('tr#comment-<%= exercise.id %>').toggle('fast');"><span class="label label-info">Tonen (<%= exercise.ratings.count %>)</span></a></td>
+                <td>
+                  <% if(exercise.exercise_files.first.nil?) %>
+                    <div>Geen script beschikbaar</div>
+                  <% else %>
+                    <div style="width: 98%; margin: 2px;"><a title="Download het script"><%= link_to image_tag('download-btn.png', { style: 'width: 90px;' }), site_url("scripts/#{exercise.exercise_files.first.attachment_file_name}") %></a></div>
+                  <% end %>
+                  </td>
               </tr>
               <tr id="comment-<%= exercise.id %>" style="display: none;">
-                <td colspan="10">
-                  Comentaar regel
+                <td colspan="11">
+                  <% if exercise.ratings.first.nil? %>
+                      (Geen commentaar)
+                  <% else %>
+                      <%= exercise.ratings[0].description %>
+                  <% end %>
                 </td>
               </tr>
           <% end %>

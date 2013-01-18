@@ -30,4 +30,30 @@ class Exercise < ActiveRecord::Base
       AND R.exercise_id = #{exercise_id}");
   	end
 
+  def count_ups
+    if self.ratings.nil?
+      return 0
+    else
+      count = self.ratings.count
+      if count.nil?
+        return 0
+      else
+        return count
+      end
+    end
+  end
+
+  def count_downs
+    if self.ratings.nil?
+      return 0
+    else
+    count = self.ratings.count
+      if count.nil?
+        return 0
+      else
+        return count
+      end
+    end
+  end
+
 end

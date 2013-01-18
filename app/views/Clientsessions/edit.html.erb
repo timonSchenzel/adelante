@@ -9,7 +9,6 @@
 <th>VVT</th>
 <th>VVC</th>
 <th>Therapeut</th>
-<th></th>
 </thead>
 
 <tbody>
@@ -50,10 +49,20 @@
 <td>
 	<%= @therapist.name %>
 </td>
-<% end %>
-<td><%= f.submit "Bewerken" , :class => "submit" %></td>
-<% end %>
+<tr>
+
+<tr>
+  <td colspan="7">
+      <%= tf.input :description, :as => :text, :label => false, :input_html => {placeholder: 'Omschrijf hoe de oefening is verlopen (wat ging er goed/wat ging er juist niet goed)',title: 'Omschrijf hoe de oefening is verlopen (wat ging er goed/wat ging er juist niet goed)',class:'placeholder', style: "width: 100%; height: 100px !important;"} %>
+  </td>
 </tr>
+
+<% end %>
+<tr>
+    <td colspan="7"><%= f.submit "Bewerken" , :class => "submit" %></td>
+</tr>
+<% end %>
+
 </tbody>
 
 </table>

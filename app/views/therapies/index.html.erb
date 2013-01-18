@@ -87,23 +87,23 @@
     });
 </script>
 
-<div class="tabbable">
-  <ul class="nav nav-tabs">
+<div class="tabbable tabs-left">
+  <ul class="nav nav-tabs span2">
     <li class="active"><a href="#my" data-toggle="tab">Mijn therapi&euml;en</a></li>
     <li><a href="#favorites" data-toggle="tab">Favorieten</a></li>
+    <li><a href="#share" data-toggle="tab">Gedeeld</a></li>
     <li><a href="#other" data-toggle="tab">Andere therapi&euml;en</a></li>
     <li><a href="#add" data-toggle="tab">Therapie toevoegen</a></li>
-    <li class="pull-right">
-      <div class="input-append search-form">
-        <input class="span3" id="therapy-search" type="text" style="float: left;">
-          <div class="btn-group" style="float: left;">
-            <a class="btn search-btn" href="#"><i class="icon-search"></i></a>
-          </div>
-      </div>
-    </li>
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="my">
+      <div class="input-append search-form" style="float: right; margin-bottom: 10px; margin-top: -10px;">
+        <input class="span3" id="therapy-search" type="text" style="float: left;">
+        <div class="btn-group" style="float: left;">
+          <a class="btn search-btn" href="#"><i class="icon-search"></i></a>
+        </div>
+      </div>
+
       <div class="row-fluid">
         <ul class="thumbnails">
           <% @current_user.therapies.each do |therapy| %>
@@ -113,6 +113,13 @@
       </div>
     </div>
     <div class="tab-pane" id="favorites">
+      <div class="input-append search-form" style="float: right; margin-bottom: 10px; margin-top: -10px;">
+        <input class="span3" id="therapy-search" type="text" style="float: left;">
+        <div class="btn-group" style="float: left;">
+          <a class="btn search-btn" href="#"><i class="icon-search"></i></a>
+        </div>
+      </div>
+
       <div class="row-fluid">
         <ul class="thumbnails">
           <% @current_user.saved_therapies.each do |st| %>
@@ -121,7 +128,32 @@
         </ul>
       </div>
     </div>
+
+    <div class="tab-pane" id="share">
+      <div class="input-append search-form" style="float: right; margin-bottom: 10px; margin-top: -10px;">
+        <input class="span3" id="therapy-search" type="text" style="float: left;">
+        <div class="btn-group" style="float: left;">
+          <a class="btn search-btn" href="#"><i class="icon-search"></i></a>
+        </div>
+      </div>
+
+      <div class="row-fluid">
+        <ul class="thumbnails">
+          <% @current_user.colleagues_shares.each do |st| %>
+              <%= render 'therapies/therapy_item', { therapy: st.therapy }  %>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
     <div class="tab-pane" id="other">
+      <div class="input-append search-form" style="float: right; margin-bottom: 10px; margin-top: -10px;">
+        <input class="span3" id="therapy-search" type="text" style="float: left;">
+        <div class="btn-group" style="float: left;">
+          <a class="btn search-btn" href="#"><i class="icon-search"></i></a>
+        </div>
+      </div>
+
         <div class="row-fluid">
           <ul class="thumbnails">
             <% @latest_therapies.each do |therapy| %>
@@ -136,9 +168,6 @@
           <%= f.input :description, :input_html => { style: 'height: 100px !important;', placeholder: 'Geef een duidelijke omschrijving van deze therapie. Wat kan met deze therapie worden bereikt?', title: 'Geef een duidelijke omschrijving van deze therapie. Wat kan met deze therapie worden bereikt?', class: 'placeholder' } %>
           <p><label>Tags</label>
           <p><input name="tags" id="tags" class="tags" value="" title="" /></p>
-
-
-
 
           <%= f.submit 'Toevoegen', class: 'btn btn-fluid' %>
       <% end %>

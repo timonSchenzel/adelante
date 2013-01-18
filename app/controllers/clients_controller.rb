@@ -27,7 +27,7 @@ class ClientsController < ApplicationController
     @clientsession.therapies.build
     @clientsession.exercises.build
     @clientsession.ratings.build
-    @clientsession.ratings.notes.build
+    @clientsession.notes.build
     #@clientherapy = @clientsession.therapies.new
   end
 

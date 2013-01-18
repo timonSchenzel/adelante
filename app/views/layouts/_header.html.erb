@@ -14,22 +14,27 @@
             </li>
         </ul>
 
-        <ul class="nav pull-right">
-          <li><%= link_to "Home", root_path %></li>
-          <li><%= link_to "Help", "#" %></li>
+        <ul class="nav pull-right span4" style="width: 260px;">
           <% if signed_in? %>
-              <li id="fat-menu" class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <%= "Therapeut #{@current_user.name}" %> <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><%= link_to "Profile", "#" %></li>
-                  <li><%= link_to "Settings", "#" %></li>
-                  <li class="divider"></li>
-                  <li>
-                    <%= link_to "Sign out", signout_path, method: "delete" %>
-                  </li>
-                </ul>
+              <li id="fat-menu" class="dropdown" style="margin-top: 10px;">
+                <div class="span2" style="width: 120px; float: left;">
+                  <a style="float: right; margin-top: 10px; clear: both;"><div class="email-icon"><span class="badge badge-info" style="float: right; position: absolute; margin-left: -10px; margin-top: -10px;">8</span></div></a>
+                  <div style="float: right; font-size: 2em; clear: both; margin-top: 10px; color: #ffffff;"><%= @current_user.name %></div>
+                  <div style="float: right; color: #ffffff;">Ergotherapie</div>
+                </div>
+                <div class="span2" style="width: 100px; float: right;">
+                  <a href="#" class="dropdown-toggle span2" data-toggle="dropdown">
+                    <%= image_tag(@current_user.photo, :class => 'circle_photo', :style => 'width: 100px;' )   %>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><%= link_to "Profile", "#" %></li>
+                    <li><%= link_to "Settings", "#" %></li>
+                    <li class="divider"></li>
+                    <li>
+                      <%= link_to "Sign out", signout_path, method: "delete" %>
+                    </li>
+                  </ul>
+                </div>
               </li>
           <% else %>
               <li><%= link_to "Sign in", signin_path %></li>

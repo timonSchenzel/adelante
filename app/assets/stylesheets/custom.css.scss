@@ -15,14 +15,20 @@ body {
   background-size: 100% auto;
   font-family: Calibri;
   color: #ffffff;
+  overflow-x: hidden;
 }
 
 body .modal {
-  //new custom width
+  //index custom width
   width: 940px;
   //must be half of the width, minus scrollbar on the left (30px)
   margin: -250px 0 0 -470px;
 }
+
+.tabs-left ul.nav-tabs { background-color: #1b031f; }
+.tabs-left ul.nav-tabs li.active a { background-color: #070107; color: #ffffff; }
+.tabs-left ul.nav-tabs li:hover a { background-color: #070107; color: #ffffff; }
+.tabs-left ul.nav-tabs li a { color: #ffffff; }
 
 .ribbon { z-index: 1000; background-image: url("ribbon.png"); background-size: 55px auto; background-repeat: no-repeat; position: fixed; width: 55px; height: 110px; top: 0px; left: 50%; margin-top: -70px; }
 
@@ -48,6 +54,8 @@ ul#main-menu li.active a { color: #000000; background-color: #002d4a; }
 .agenda-icon { background-image: url("agenda-icon.png"); }
 .colleagues-icon { background-image: url("colleagues-icon.png"); margin-right: 0 !important; }
 
+.email-icon{ background-image: url("email-icon.png"); height: 25px; width: 40px; background-size: 40px; display: table; }
+
 .result-header { background: url("table-header-mask.png") repeat; height: 40px; text-align: center; color: #000000; line-height: 40px; background-size: 120px; }
   .result-header span { color: #000000; }
 
@@ -71,6 +79,7 @@ div.navbar-inner { background-color: #401713; border-bottom: solid 2px #ffffff; 
 input.knob { cursor: default; }
 div.knob { display: table !important; margin: 0 auto; }
 ul.thumbnails li.span3:nth-child(4n+1) { margin-left: 0; }
+ul.thumbnails li.span12 { margin-left: 0; }
 
 .well {  }
 .my-well { background-color: #D8D8D8; }
@@ -85,10 +94,6 @@ div.tab-content {
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 18px;
-  border-bottom: 1px solid #DDD;
-  border-left: 1px solid #DDD;
-  border-right: 1px solid #DDD;
-  background-color: white;
   margin-top: 0;
 }
 
@@ -304,19 +309,6 @@ aside {
     height: 100px;
     margin-bottom: 5px;
   }
-}
-
-//Clients
-.circle_photo {
-  -moz-border-bottom-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc;
-  -moz-border-top-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc;
-  -moz-border-left-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc;
-  -moz-border-right-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc;
-  padding: 5px 5px 5px 15px;
-
-  max-height: 100px;
-  border-radius: 50%;
-  border: 8px solid #000;
 }
 
 .client_info_photo {

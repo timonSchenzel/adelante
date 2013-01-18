@@ -1,0 +1,19 @@
+<% provide(:title, 'Therapie delen') %>
+
+<p>Met wie wil je deze therapie "<%= @therapy.name %>" delen?</p>
+
+<%= simple_form_for(@colleagues_share) do |f| %>
+
+    <input type="hidden" value="<%= @therapy.id %>" name="[colleagues_share]therapy_id" />
+
+    <select name="[colleagues_share]colleague_id">
+      <% @current_user.friends.each do |colleague| %>
+          <option value="0">Kies een collega</option>
+          <option value="<%= colleague.therapist.id %>"><%= colleague.therapist.name %></option>
+      <% end %>
+    </select>
+
+    <%= f.input :message, :input_html => { style: 'height: 100px !important;', placeholder: 'Waarom deel je deze therapie?', title: 'Waarom deel je deze therapie?', class: 'placeholder' } %>
+
+    <%= f.submit 'Delen', class: 'btn btn-fluid' %>
+<% end %>

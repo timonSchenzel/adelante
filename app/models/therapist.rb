@@ -1,6 +1,6 @@
 class Therapist < ActiveRecord::Base
 
-  attr_accessible :name, :email, :password, :password_confirmation
+  attr_accessible :name, :email, :photo, :password, :password_confirmation
 
   has_many :clients_therapists
   has_many :clients, :through => :clients_therapists
@@ -9,6 +9,11 @@ class Therapist < ActiveRecord::Base
   has_many :therapies, :through => :therapists_therapies
 
   has_many :saved_therapies
+
+  has_many :colleagues
+  has_many :friends, :through => :colleagues
+
+  has_many :colleagues_shares
 
   has_secure_password
 
