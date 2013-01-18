@@ -142,10 +142,10 @@
                 <td><%= exercise.code %></td>
                 <td><%= exercise.name %></td>
                 <td>Beginner</td>
-                <td>Up<br /><%= exercise.ratings.count %></td>
-                <td>Down<br /><%= exercise.ratings.count %></td>
-                <td>Oef. R</td>
-                <td>Oef. F</td>
+                <td>Up<br /><%= up %></td>
+                <td>Down<br /><%= down %></td>
+                <td>Kop optillen_Gevorderde</td>
+                <td>Kop naar mond</td>
                 <td><a href="javascript:;" onclick="$('tr#comment-<%= exercise.id %>').toggle('fast');"><span class="label label-info">Tonen (<%= exercise.ratings.count %>)</span></a></td>
                 <td>
                   <% if(exercise.exercise_files.first.nil?) %>
