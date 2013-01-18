@@ -1,1 +1,1 @@
-class ClientsessionsRating < ActiveRecord::Base  attr_accessible :clientsession_id, :rating_id, :exercise_id  belongs_to :rating  belongs_to :clientsessionend
+class ClientsessionRating < ActiveRecord::Base  attr_accessible :clientsession_id, :rating_id, :exercise_id  belongs_to :rating  belongs_to :clientsessionend
