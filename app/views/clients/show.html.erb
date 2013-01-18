@@ -21,7 +21,7 @@
         <table class="table my-table">
 
       <thead>
-        <th colspan="7"><%= clientSession.date.to_s(:short) %></th>
+        <th colspan="8"><%= clientSession.date.to_s(:short) %></th>
         <th colspan="2"><%= link_to "Bewerken", [:edit, clientSession], :class => "btn btn-primary pull-right" %></td>
       </thead>
       <tbody>
@@ -35,6 +35,7 @@
           <td>VVT</td>
           <td>Naam therapeut</td>
           <th>Commentaar</th>
+          <th>Download</th>
         </tr>
 
           <% clientSession.exercises.each do |exercise| %>
@@ -51,6 +52,13 @@
             <td><%=sessionrating.progress_t%></td>
             <td><%=clientSession.therapist_name(clientSession.therapist_id).first.name %></td>
             <td><a href="javascript:;" onclick="$('tr#comment-<%= exercise.id %>').toggle('fast');"><span class="label label-info">Tonen (<%= exercise.ratings.count %>)</span></a></td>
+            <td>
+              <% if( exercise.exercise_files.first.nil?) %>
+                  <div>Geen script beschikbaar</div>
+              <% else %>
+                  Download script <div style="width: 98%; margin: 2px;"><a title="Download het script"><%= link_to image_tag('download-btn.png', { style: 'width: 90px;' }), site_url("scripts/#{ exercise.exercise_files.first.attachment_file_name}") %></a></div>
+              <% end %>
+            </td>
           </tr>
           <tr id="comment-<%= exercise.id %>" style="display: none;">
             <td colspan="11">
