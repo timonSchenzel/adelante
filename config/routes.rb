@@ -17,6 +17,7 @@ Adelante::Application.routes.draw do
   end
   resources :therapies_exercises, only: [:new, :create, :destroy]
   resources :colleagues_shares
+  resources :agenda
   resources :therapists
   resources :therapies
   resources :exercises

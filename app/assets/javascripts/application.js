@@ -21,13 +21,17 @@ $(document).ready(function(){
     $('div.ribbon').click(function(){
         if($(this).css('margin-top') == '-70px') {
             $(this).addClass('disabled');
+            $('#search-result-container').slideDown(500);
+            //$('#search-result').css('display', 'table');
             $(this).animate({
-                'margin-top': '-10px'
+                'margin-top': '430px'
             }, 500, function() {
+                $('#search-input').focus();
                 $(this).removeClass('disabled');
             });
         } else {
             $(this).addClass('disabled');
+            $('#search-result-container').slideUp(500);
             $(this).animate({
                 'margin-top': '-70px'
             }, 500, function() {

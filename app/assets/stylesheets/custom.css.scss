@@ -31,6 +31,13 @@ body .modal {
 .tabs-left ul.nav-tabs li a { color: #ffffff; }
 
 .ribbon { z-index: 1000; background-image: url("ribbon.png"); background-size: 55px auto; background-repeat: no-repeat; position: fixed; width: 55px; height: 110px; top: 0px; left: 50%; margin-top: -70px; }
+#search-input { font-size: 5em; background-color: #000000; border: 0; border-bottom: solid 3px #028bb8; font-family: geo_sans; color: #ffffff; background-image: url("search-icon.png"); background-size: 50px; background-position: 15px 15px; background-repeat: no-repeat; padding-left: 80px; outline: none; outline-color: none; }
+#search-input:focus { box-shadow: none !important; }
+
+#search-result h3 { color: #028bb8; font-size: 2em !important; border-bottom: solid 1.5px #028bb8; }
+#search-result td { padding: 10px; }
+#search-result tr { width: 50%; }
+#search-result table { width: 100%; }
 
 .home-icon-big { background-image: url("home-icon.png"); }
 .clients-icon-big { background-image: url("clients-icon.png"); }

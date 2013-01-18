@@ -140,7 +140,7 @@
       <div class="row-fluid">
         <ul class="thumbnails">
           <% @current_user.colleagues_shares.each do |st| %>
-              <%= render 'therapies/therapy_item', { therapy: st.therapy }  %>
+              <%= render 'therapies/therapy_item', { therapy: st.therapy, share: st.id }  %>
           <% end %>
         </ul>
       </div>

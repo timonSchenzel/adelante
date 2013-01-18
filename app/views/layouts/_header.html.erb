@@ -1,12 +1,15 @@
 <div class="ribbon"></div>
+<div id="search-result-container" style="z-index: 1001; display: none; position: fixed; height: 500px; background-color: #000000; width: 100%;">
+    <div style="width: 900px; margin: 0 auto;">
+        <h1 style="color: #028bb8; font-weight: bolder; font-size: 4em; float: left; margin-top: 20px;">Zoeken</h1>
+        <input class="span12" id="search-input" type="text" onkeyup="show_suggestions();">
+        <div id="search-result"></div>
+    </div>
+</div>
+
 <header class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <div class="input-append span4">
-        <input class="span2" id="search-input" type="text" onkeyup="show_suggestions();">
-        <button class="btn" type="button">Zoeken</button>
-      </div>
-      <div id="search-result" style="display: none;" onclick="$(this).slideUp(500);"></div>
       <nav>
         <ul class="nav pull span9" style="display: table;">
             <li style="width: 100%;">

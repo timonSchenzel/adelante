@@ -13,7 +13,11 @@
         <div style="width: 47%; float: left; margin: 2px;"><a href="<%= create_saved_therapies_path(therapy.id) %>" title="Opslaan in favorieten"><%= image_tag('favorite-btn.png') %></a></div>
         <div style="width: 47%; float: left; margin: 2px;"><a href="<%= new_colleagues_share_path(id: therapy.id) %>" title="Delen"><%= image_tag('share-btn.png') %></a></div>
 
-        <p><a href="<%= therapy_path(therapy.id) %>" class="btn btn-small btn-primary" onclick="getDialog(this, {  }); return false;">Meer informatie</a></p>
+        <% if (!defined? share) %>
+            <p><a href="<%= therapy_path(therapy.id) %>" class="btn btn-small btn-primary" onclick="getDialog(this, {  }); return false;">Meer informatie</a></p>
+        <% else %>
+            <p><a href="<%= colleagues_share_path(share) %>" class="btn btn-small btn-primary">Meer informatie</a></p>
+        <% end %>
     </div>
   </div>
 </li>
