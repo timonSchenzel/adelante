@@ -35,7 +35,7 @@
 <% end %>
 
 <%= f.simple_fields_for(:ratings) do |tf| %>
-<td style="width:200px; height=100px;">
+<td style="width:200px; height:100px;">
 	<%=tf.input :client_level,
 	:label => false,
 	:collection => [:beginner,:gevorderde,:expert], 
