@@ -116,6 +116,7 @@
   <div class="span2" style="width: 150px; margin-top: 30px;">
     <div style="width: 47%; float: left; margin: 2px;"><a href="<%= create_saved_therapies_path(@therapy.id) %>" title="Opslaan in favorieten"><%= image_tag('favorite-btn.png') %></a></div>
     <div style="width: 47%; float: left; margin: 2px;"><a title="Delen" href="<%= new_colleagues_share_path(id: @therapy.id) %>"><%= image_tag('share-btn.png') %></a></div>
+    <div class="btn btn-success">Gebruik deze therapie</div>
   </div>
   <div class="span11" style="margin: 5px;">
     <div class="result-header">
