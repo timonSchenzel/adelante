@@ -177,7 +177,7 @@ function show_suggestions() {
                 exercises_result = "<li>Geen resultaten.</li>";
             } else {
                 $.each(data.exercises, function(index, value){
-                    exercises_result += '<li>' + value + '</li>'
+                    exercises_result += '<li><a href="javascript:;">' + value + '</a></li>'
                 });
             }
 
@@ -185,15 +185,15 @@ function show_suggestions() {
                 therapies_result = "<li>Geen resultaten.</li>";
             } else {
                 $.each(data.therapies, function(index, value){
-                    therapies_result += '<li>' + value + '</li>'
+                    therapies_result += '<li><a href="' + site_url('therapies/' + value.id) + '">' + value.name + '</a></li>'
                 });
             }
 
-            exercises_result = '<ul>' + exercises_result + '</ul>';
-            therapies_result = '<ul>' + therapies_result + '</ul>';
+            exercises_result = '<ul class="nav nav-tabs nav-stacked">' + exercises_result + '</ul>';
+            therapies_result = '<ul class="nav nav-tabs nav-stacked">' + therapies_result + '</ul>';
         }
 
-        $('div#search-result').html('<table><thead><tr><td style="width: 50%;"><h3>Therapieen</h3></td><td style="width: 50%;"><h3>Oefeningen</h3></td></tr></thead><tr><td style="border-left: solid 1px #ffffff;">' + therapies_result + '</td><td style="border-left: solid 1px #ffffff;">' + exercises_result + '</td></tr></table>');
+        $('div#search-result').html('<table><thead><tr><td style="width: 50%; vertical-align: top;"><h3>Therapieen</h3></td><td style="width: 50%; vertical-align: top;"><h3>Oefeningen</h3></td></tr></thead><tr><td style="border-left: solid 1px #ffffff;">' + therapies_result + '</td><td style="border-left: solid 1px #ffffff;">' + exercises_result + '</td></tr></table>');
 
         $('div#search-result').slideDown(1000);
     });

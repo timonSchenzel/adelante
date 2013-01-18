@@ -8,7 +8,7 @@
     <h1><%= @client.name %></h1>
     <p>
       <%= if(@client.dossier.respond_to?("description"))
-                    @client.dossier.description
+            @client.dossier.description
           end
       %>
     </p>
@@ -17,63 +17,75 @@
 
 <div class="row">
   <div class="span11">
-        <% @clientSessions.each do |clientSession|  %>
+    <% @clientSessions.each do |clientSession|  %>
         <table class="table my-table">
 
-      <thead>
-        <th colspan="8"><%= clientSession.date.to_s(:short) %></th>
-        <th colspan="2"><%= link_to "Bewerken", [:edit, clientSession], :class => "btn btn-primary pull-right" %></td>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Therapie</td>
-          <td>Oefening</td>
-          <td>Score</td>
-          <td>Sluit aan</td>
-          <td>Niveau</td>
-          <td>VVC</td>
-          <td>VVT</td>
-          <td>Naam therapeut</td>
-          <th>Commentaar</th>
-          <th>Download</th>
-        </tr>
+          <thead>
+          <th colspan="8"><%= clientSession.date.to_s(:short) %></th>
+          <th colspan="2"><%= link_to "Bewerken", [:edit, clientSession], :class => "btn btn-primary pull-right" %></td>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Therapie</td>
+            <td>Oefening</td>
+            <td>Score</td>
+            <td>Sluit aan</td>
+            <td>Niveau</td>
+            <td>VVC</td>
+            <td>VVT</td>
+            <td>Naam therapeut</td>
+            <th>Commentaar</th>
+            <th>Download</th>
+          </tr>
 
           <% clientSession.exercises.each do |exercise| %>
-          <tr>
-            <% exercise.find_therapy_session(clientSession.id,exercise.id).each do |therapy| %>
-              <td><%= therapy.name %></td>
-            <% end %>
-            <td><%= exercise.name %></td>
-            <% exercise.sessionrating(clientSession.id,exercise.id).each do |sessionrating| %>
-            <td><%=sessionrating.score%></td>                       
-            <td><%=sessionrating.connects%></td>            
-            <td><%=sessionrating.client_level%></td>          
-            <td><%=sessionrating.progress_c%></td>            
-            <td><%=sessionrating.progress_t%></td>
-            <td><%=clientSession.therapist_name(clientSession.therapist_id).first.name %></td>
-            <td><a href="javascript:;" onclick="$('tr#comment-<%= exercise.id %>').toggle('fast');"><span class="label label-info">Tonen (<%= exercise.ratings.count %>)</span></a></td>
-            <td>
-              <% if( exercise.exercise_files.first.nil?) %>
-                  <div>Geen script beschikbaar</div>
-              <% else %>
-                  Download script <div style="width: 98%; margin: 2px;"><a title="Download het script"><%= link_to image_tag('download-btn.png', { style: 'width: 90px;' }), site_url("scripts/#{ exercise.exercise_files.first.attachment_file_name}") %></a></div>
-              <% end %>
-            </td>
-          </tr>
-          <tr id="comment-<%= exercise.id %>" style="display: none;">
-            <td colspan="11">
-              <% if sessionrating.description.nil? %>
-                  (Geen commentaar)
-              <% else %>
-                  <%= sessionrating.description %>
-              <% end %>
-            </td>
-          </tr>
-            <% end %>
+              <tr>
+                <% exercise.find_therapy_session(clientSession.id,exercise.id).each do |therapy| %>
+                    <td><%= therapy.name %></td>
+                <% end %>
+                <td><%= exercise.name %></td>
+                <% exercise.sessionrating(clientSession.id,exercise.id).each do |sessionrating| %>
+                    <td>
+                      <% if(sessionrating.score == true) %>
+                          <img src="http://www.heiloo-online.nl/forum/extensions/pun_karma/icons/thumbs_up.gif">
+                      <% else %>
+                          <img src="http://www.heiloo-online.nl/forum/extensions/pun_karma/icons/thumbs_down.gif">
+                      <% end  %>
+                    </td>
+                    <td>
+                      <% if(sessionrating.connects == true) %>
+                          Ja
+                      <% else %>
+                          Nee
+                      <% end  %>
+                    </td>
+                    <td><%=sessionrating.client_level%></td>
+                    <td><%=sessionrating.progress_c%></td>
+                    <td><%=sessionrating.progress_t%></td>
+                    <td><%=clientSession.therapist_name(clientSession.therapist_id).first.name %></td>
+                    <td><a href="javascript:;" onclick="$('tr#comment-<%= exercise.id %>').toggle('fast');"><span class="label label-info">Tonen (<%= exercise.ratings.count %>)</span></a></td>
+                    <td>
+                      <% if( exercise.exercise_files.first.nil?) %>
+                          <div>Geen script beschikbaar</div>
+                      <% else %>
+                          <div style="width: 98%; margin: 2px;"><a title="Download het script"><%= link_to image_tag('download-btn.png', { style: 'width: 90px;' }), site_url("scripts/#{ exercise.exercise_files.first.attachment_file_name}") %></a></div>
+                      <% end %>
+                    </td>
+                    </tr>
+                    <tr id="comment-<%= exercise.id %>" style="display: none;">
+                      <td colspan="11">
+                        <% if sessionrating.description.nil? %>
+                            (Geen commentaar)
+                        <% else %>
+                            <%= sessionrating.description %>
+                        <% end %>             m
+                      </td>
+                    </tr>
+                <% end %>
           <% end %>
-      </tbody>
-    </table>
-        <% end  %>
+          </tbody>
+        </table>
+    <% end  %>
 
   </div>
 </div>
