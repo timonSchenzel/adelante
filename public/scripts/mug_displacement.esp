@@ -1,0 +1,87 @@
+/********************************************************
+* Application title: Displace an object          	*
+* 							*
+* Description: Lift an object up and down the board     *
+*							*
+* Code written by Patrick Kierkegaard			*
+* e-mail: p.m.kierkegaard@tue.nl			*
+* Updated 16/02/2011					*
+*							*
+********************************************************/
+
+import (tagtilesRemote.esp tagIds.esp)
+
+main = (
+ drawRect {4,6} {5,7} white;
+ drawRect {8,6} {9,7} white;
+ emitSound "sounds/soundfile_10.wav";
+ waitTime 5000;
+ menu     
+)
+
+menu = (
+ either (awaitAnyTagInsideRect 4 6 5 7; Option_1) 
+ (awaitAnyTagInsideRect 8 6 9 7; Option_2)   
+)
+
+
+// Use a Specific object
+Option_1 = (
+  clearAll;
+  loop (
+  drawRect {2, 2} {3,3} blue;
+  emitSound "sounds/soundfile_1.wav";
+  awaitTagIdAtRect 2 2 3 3 redObject;
+  emitSound "sounds/soundfile_2.wav";
+  drawRect {2, 2} {3,3} green;
+  awaitAnyTagUp;
+  drawRect {2, 2} {3,3} black;
+  drawRect {8, 7} {9,8} blue;
+  emitSound "sounds/soundfile_1.wav";
+  awaitTagIdAtRect 8 7 9 8 redObject;
+  emitSound "sounds/soundfile_3.wav";
+  drawRect {8, 7} {9,8} green;
+  awaitAnyTagUp;
+  drawRect {8,7} {9,8} black;
+  drawRect {2, 10} {3,11} blue;
+  emitSound "sounds/soundfile_1.wav";
+  awaitTagIdAtRect 2 10 3 11 redObject;
+  drawRect {2, 10} {3,11} green;
+  emitSound "sounds/soundfile_2.wav";
+  awaitAnyTagUp;
+  drawRect {2, 10} {3,11} black;
+  waitTime 2000
+  )
+)
+
+
+//Use any Object
+Option_2 = (
+  clearAll;
+  loop (
+  drawRect {2, 2} {3,3} blue;
+  emitSound "sounds/soundfile_1.wav";
+  awaitAnyTagInsideRect 2 2 3 3;
+  emitSound "sounds/soundfile_2.wav";
+  drawRect {2, 2} {3,3} green;
+  awaitAnyTagUp;
+  drawRect {2, 2} {3,3} black;
+  drawRect {8, 7} {9,8} blue;
+  emitSound "sounds/soundfile_1.wav";
+  awaitAnyTagInsideRect 8 7 9 8;
+  emitSound "sounds/soundfile_3.wav";
+  drawRect {8, 7} {9,8} green;
+  awaitAnyTagUp;
+  drawRect {8,7} {9,8} black;
+  drawRect {2, 10} {3,11} blue;
+  emitSound "sounds/soundfile_1.wav";
+  awaitAnyTagInsideRect 2 10 3 11;
+  drawRect {2, 10} {3,11} green;
+  emitSound "sounds/soundfile_2.wav";
+  awaitAnyTagUp;
+  drawRect {2, 10} {3,11} black;
+  waitTime 2000
+  )
+)
+
+

@@ -1,0 +1,74 @@
+/********************************************************
+* Application title: Lift an object          		*
+* 							*
+* Description: Lift an object up and down the board     *
+*							*
+* Code written by Patrick Kierkegaard			*
+* e-mail: p.m.kierkegaard@tue.nl			*
+* Updated 16/02/2011					*
+*							*
+********************************************************/
+
+import (tagtilesRemote.esp tagIds.esp)
+
+main = (
+ drawRect {4,6} {5,7} white;
+ drawRect {8,6} {9,7} white;
+ emitSound "sounds/soundfile_0.wav";
+ waitTime 5000;
+ menu     
+)
+
+menu = (
+ either (awaitAnyTagInsideRect 4 6 5 7; Option_1) 
+ (awaitAnyTagInsideRect 8 6 9 7; Option_2)      
+)
+
+
+// Use a Specific object
+Option_1 = (
+  clearAll;
+  loop (
+  drawRect {2, 2} {3,3} blue;
+  emitSound "sounds/soundfile_1.wav";
+  awaitTagIdAtRect 2 2 3 3 redObject;
+  emitSound "sounds/soundfile_2.wav";
+  drawRect {2, 2} {3,3} green;
+  awaitAnyTagUp;
+  drawRect {2, 2} {3,3} black;
+  waitTime 3000;
+  drawRect {2, 2} {3,3} blue;
+  emitSound "sounds/soundfile_1.wav";
+  awaitTagIdAtRect 2 2 3 3 redObject;
+  emitSound "sounds/soundfile_3.wav";
+  drawRect {2, 2} {3,3} green;
+  awaitAnyTagUp;
+  drawRect {2, 2} {3,3} black;
+  waitTime 3000
+  )
+)
+
+
+//Use any Object
+Option_2 = (
+  clearAll;
+  loop (
+  drawRect {2, 2} {3,3} blue;
+  emitSound "sounds/soundfile_1.wav";
+  awaitAnyTagInsideRect 2 2 3 3;
+  emitSound "sounds/soundfile_2.wav";
+  drawRect {2, 2} {3,3} green;
+  awaitAnyTagUp;
+  drawRect {2, 2} {3,3} black;
+  waitTime 3000;
+  drawRect {2, 2} {3,3} blue;
+  emitSound "sounds/soundfile_1.wav";
+  awaitAnyTagInsideRect 2 2 3 3;
+  emitSound "sounds/soundfile_3.wav";
+  drawRect {2, 2} {3,3} green;
+  awaitAnyTagUp;
+  drawRect {2, 2} {3,3} black;
+  waitTime 3000
+  )
+)
+

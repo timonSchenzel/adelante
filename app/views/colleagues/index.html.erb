@@ -19,7 +19,7 @@
         <% @current_user.friends.each do |client| %>
             <div class="span3">
               <div class="client_info_photo">
-                <%= link_to image_tag(client.therapist.photo, :class => 'circle_photo', ), client.therapist   %>
+                <%= image_tag(client.therapist.photo, :class => 'circle_photo', )   %>
               </div>
               <div class="client_info_name">
                 <%= client.therapist.name %>
