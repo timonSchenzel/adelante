@@ -217,8 +217,8 @@ function site_url(addition_url) {
         addition_url = addition_url.substring(1);
     }
 
-    return 'http://localhost:3000/' + addition_url;
-    //return 'http://infinite-headland-6783.herokuapp.com/' + addition_url;
+    //return 'http://localhost:3000/' + addition_url;
+    return 'http://secret-escarpment-7180.herokuapp.com/' + addition_url;
 }
 
 jQuery (function ($)
@@ -250,7 +250,7 @@ jQuery (function ($)
 
 $(document).ready(function() {
     $("#suggest-therapy-container").change(function() {
-        $.getJSON('http://localhost:3000/exercises/existing_suggestions?therapy='+$(this).val(), function(data) {
+        $.getJSON(site_url('exercises/existing_suggestions?therapy='+$(this).val()), function(data) {
             $('#exisiting-exercises-container').html('');
                 $.each(data, function(index, element){
                     $('#exisiting-exercises-container').append(new Option(element.name, element.id));
