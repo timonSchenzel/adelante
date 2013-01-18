@@ -217,8 +217,8 @@ function site_url(addition_url) {
         addition_url = addition_url.substring(1);
     }
 
-    //return 'http://localhost:3000/' + addition_url;
-    return 'http://secret-escarpment-7180.herokuapp.com/' + addition_url;
+    return 'http://localhost:3000/' + addition_url;
+    //return 'http://secret-escarpment-7180.herokuapp.com/' + addition_url;
 }
 
 jQuery (function ($)
