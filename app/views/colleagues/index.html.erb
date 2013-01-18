@@ -1,0 +1,38 @@
+<% provide(:title, 'Collegas') %>
+
+<div class="tabbable tabs-left"">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#my" data-toggle="tab">Mijn collega's</a></li>
+    <li><a href="#circles" data-toggle="tab">Mijn kringen</a></li>
+    <li><a href="#others" data-toggle="tab">Andere therapeuten</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="my">
+      <div class="input-append search-form" style="float: right; margin-bottom: 10px; margin-top: -40px;">
+        <input class="span3" id="therapy-search" type="text" style="float: left;">
+        <div class="btn-group" style="float: left;">
+          <a class="btn search-btn" href="#"><i class="icon-search"></i></a>
+        </div>
+      </div>
+
+      <div class="row" style="display: table; width: 100%; margin-top: 20px;">
+        <% @current_user.friends.each do |client| %>
+            <div class="span3">
+              <div class="client_info_photo">
+                <%= link_to image_tag(client.therapist.photo, :class => 'circle_photo', ), client.therapist   %>
+              </div>
+              <div class="client_info_name">
+                <%= client.therapist.name %>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="tab-pane" id="circles">
+
+    </div>
+    <div class="tab-pane" id="others">
+
+    </div>
+  </div>
+</div>
